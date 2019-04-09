@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.HistoryReportMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.HistoryReport">
+    <result column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+    <result column="DISASTERDESCFILENAME" jdbcType="VARCHAR" property="disasterdescfilename" />
+    <result column="DISASTERDESCFILEPATH" jdbcType="VARCHAR" property="disasterdescfilepath" />
+    <result column="DISASTERLOCALEDESCRIPTION" jdbcType="VARCHAR" property="disasterlocaledescription" />
+    <result column="DISASTERREMEDYSTEP" jdbcType="VARCHAR" property="disasterremedystep" />
+    <result column="REPORTASSESSOR" jdbcType="VARCHAR" property="reportassessor" />
+    <result column="REPORTCOUNT" jdbcType="DECIMAL" property="reportcount" />
+    <result column="REPORTEDITOR" jdbcType="VARCHAR" property="reporteditor" />
+    <result column="REPORTGRANULARITY" jdbcType="DECIMAL" property="reportgranularity" />
+    <result column="REPORTISSUER" jdbcType="VARCHAR" property="reportissuer" />
+    <result column="REPORTPRINCIPAL" jdbcType="VARCHAR" property="reportprincipal" />
+    <result column="REPORTSTATTIME" jdbcType="TIMESTAMP" property="reportstattime" />
+    <result column="REPORTTIME" jdbcType="TIMESTAMP" property="reporttime" />
+    <result column="REPORTUSER" jdbcType="VARCHAR" property="reportuser" />
+    <result column="ACTIONLISTID" jdbcType="VARCHAR" property="actionlistid" />
+    <result column="BELONGREPORTID" jdbcType="VARCHAR" property="belongreportid" />
+    <result column="CREDITIONRELATIONID" jdbcType="VARCHAR" property="creditionrelationid" />
+    <result column="DISASTERID" jdbcType="VARCHAR" property="disasterid" />
+    <result column="FLOWACTIONID" jdbcType="VARCHAR" property="flowactionid" />
+    <result column="PARENTID" jdbcType="VARCHAR" property="parentid" />
+    <result column="REVISEDISASTERID" jdbcType="VARCHAR" property="revisedisasterid" />
+    <result column="REPORTPOSITIONID" jdbcType="VARCHAR" property="reportpositionid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.HistoryReport">
+    insert into HJCN1.HISTORYREPORT (REPORTID, DISASTERDESCFILENAME, DISASTERDESCFILEPATH,
+      DISASTERLOCALEDESCRIPTION, DISASTERREMEDYSTEP, 
+      REPORTASSESSOR, REPORTCOUNT, REPORTEDITOR, 
+      REPORTGRANULARITY, REPORTISSUER, REPORTPRINCIPAL, 
+      REPORTSTATTIME, REPORTTIME, REPORTUSER, 
+      ACTIONLISTID, BELONGREPORTID, CREDITIONRELATIONID, 
+      DISASTERID, FLOWACTIONID, PARENTID, 
+      REVISEDISASTERID, REPORTPOSITIONID)
+    values (#{reportid,jdbcType=VARCHAR}, #{disasterdescfilename,jdbcType=VARCHAR}, #{disasterdescfilepath,jdbcType=VARCHAR}, 
+      #{disasterlocaledescription,jdbcType=VARCHAR}, #{disasterremedystep,jdbcType=VARCHAR}, 
+      #{reportassessor,jdbcType=VARCHAR}, #{reportcount,jdbcType=DECIMAL}, #{reporteditor,jdbcType=VARCHAR}, 
+      #{reportgranularity,jdbcType=DECIMAL}, #{reportissuer,jdbcType=VARCHAR}, #{reportprincipal,jdbcType=VARCHAR}, 
+      #{reportstattime,jdbcType=TIMESTAMP}, #{reporttime,jdbcType=TIMESTAMP}, #{reportuser,jdbcType=VARCHAR}, 
+      #{actionlistid,jdbcType=VARCHAR}, #{belongreportid,jdbcType=VARCHAR}, #{creditionrelationid,jdbcType=VARCHAR}, 
+      #{disasterid,jdbcType=VARCHAR}, #{flowactionid,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, 
+      #{revisedisasterid,jdbcType=VARCHAR}, #{reportpositionid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.HistoryReport">
+    insert into HJCN1.HISTORYREPORT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportid != null">
+        REPORTID,
+      </if>
+      <if test="disasterdescfilename != null">
+        DISASTERDESCFILENAME,
+      </if>
+      <if test="disasterdescfilepath != null">
+        DISASTERDESCFILEPATH,
+      </if>
+      <if test="disasterlocaledescription != null">
+        DISASTERLOCALEDESCRIPTION,
+      </if>
+      <if test="disasterremedystep != null">
+        DISASTERREMEDYSTEP,
+      </if>
+      <if test="reportassessor != null">
+        REPORTASSESSOR,
+      </if>
+      <if test="reportcount != null">
+        REPORTCOUNT,
+      </if>
+      <if test="reporteditor != null">
+        REPORTEDITOR,
+      </if>
+      <if test="reportgranularity != null">
+        REPORTGRANULARITY,
+      </if>
+      <if test="reportissuer != null">
+        REPORTISSUER,
+      </if>
+      <if test="reportprincipal != null">
+        REPORTPRINCIPAL,
+      </if>
+      <if test="reportstattime != null">
+        REPORTSTATTIME,
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME,
+      </if>
+      <if test="reportuser != null">
+        REPORTUSER,
+      </if>
+      <if test="actionlistid != null">
+        ACTIONLISTID,
+      </if>
+      <if test="belongreportid != null">
+        BELONGREPORTID,
+      </if>
+      <if test="creditionrelationid != null">
+        CREDITIONRELATIONID,
+      </if>
+      <if test="disasterid != null">
+        DISASTERID,
+      </if>
+      <if test="flowactionid != null">
+        FLOWACTIONID,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="revisedisasterid != null">
+        REVISEDISASTERID,
+      </if>
+      <if test="reportpositionid != null">
+        REPORTPOSITIONID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportid != null">
+        #{reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterdescfilename != null">
+        #{disasterdescfilename,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterdescfilepath != null">
+        #{disasterdescfilepath,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterlocaledescription != null">
+        #{disasterlocaledescription,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterremedystep != null">
+        #{disasterremedystep,jdbcType=VARCHAR},
+      </if>
+      <if test="reportassessor != null">
+        #{reportassessor,jdbcType=VARCHAR},
+      </if>
+      <if test="reportcount != null">
+        #{reportcount,jdbcType=DECIMAL},
+      </if>
+      <if test="reporteditor != null">
+        #{reporteditor,jdbcType=VARCHAR},
+      </if>
+      <if test="reportgranularity != null">
+        #{reportgranularity,jdbcType=DECIMAL},
+      </if>
+      <if test="reportissuer != null">
+        #{reportissuer,jdbcType=VARCHAR},
+      </if>
+      <if test="reportprincipal != null">
+        #{reportprincipal,jdbcType=VARCHAR},
+      </if>
+      <if test="reportstattime != null">
+        #{reportstattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reporttime != null">
+        #{reporttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportuser != null">
+        #{reportuser,jdbcType=VARCHAR},
+      </if>
+      <if test="actionlistid != null">
+        #{actionlistid,jdbcType=VARCHAR},
+      </if>
+      <if test="belongreportid != null">
+        #{belongreportid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditionrelationid != null">
+        #{creditionrelationid,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterid != null">
+        #{disasterid,jdbcType=VARCHAR},
+      </if>
+      <if test="flowactionid != null">
+        #{flowactionid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="revisedisasterid != null">
+        #{revisedisasterid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportpositionid != null">
+        #{reportpositionid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.Person2016Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.Person2016">
+    <result column="PERSONID" jdbcType="VARCHAR" property="personid" />
+    <result column="PERSONADDRESS" jdbcType="VARCHAR" property="personaddress" />
+    <result column="PERSONCREATETIME" jdbcType="TIMESTAMP" property="personcreatetime" />
+    <result column="PERSONCREATEUSER" jdbcType="VARCHAR" property="personcreateuser" />
+    <result column="PERSONEMAIL" jdbcType="VARCHAR" property="personemail" />
+    <result column="PERSONMOBILE" jdbcType="VARCHAR" property="personmobile" />
+    <result column="PERSONNAME" jdbcType="VARCHAR" property="personname" />
+    <result column="PERSONTEL" jdbcType="VARCHAR" property="persontel" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+  </resultMap>
+  <resultMap id="ResultMap2018" type="com.fineway.springbootdemo.dao.cnzb2018.pojo.Person2018">
+    <id column="PERSONID" jdbcType="VARCHAR" property="personid" />
+    <result column="PERSONADDRESS" jdbcType="VARCHAR" property="personaddress" />
+    <result column="PERSONCREATETIME" jdbcType="TIMESTAMP" property="personcreatetime" />
+    <result column="PERSONCREATEUSER" jdbcType="VARCHAR" property="personcreateuser" />
+    <result column="PERSONEMAIL" jdbcType="VARCHAR" property="personemail" />
+    <result column="PERSONMOBILE" jdbcType="VARCHAR" property="personmobile" />
+    <result column="PERSONNAME" jdbcType="VARCHAR" property="personname" />
+    <result column="PERSONTEL" jdbcType="VARCHAR" property="persontel" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+  </resultMap>
+  <select id="selectByChuBao4_LeftJoinCivi" parameterType="java.lang.String" resultMap="ResultMap2018">
+    select
+    distinct t055.*
+    from hjcn1.historyreport t02
+    left outer join hjcn1.actionlist t03 on t03.actionlistid = t02.actionlistid
+    left outer join hjcn1.reportstage t031 on t031.reportstageid = t03.reportstageid
+    left outer join hjcn1.flowaction t04 on t02.flowactionid = t04.flowactionid
+    left outer join hjcn1.flowactionstatus t041 on t04.flowactionstatusid = t041.flowactionstatusid
+    left outer join hjcn1.disaster t05 on t02.disasterid = t05.disasterid
+    left outer join hjcn1.creditionrelation t051 on t051.creditionrelationid = t05.creditionrelationid
+    left outer join hjcn1.civilregionalism t052 on t051.civilregionalismid = t052.civilregionalismid
+    left outer join hjcn1.civilregionalismlevel t053 on t053.civilregionalismlevelid = t052.civilregionalismlevelid
+    left outer join hjcn1.civilregionalism t054 on t052.parentid=t054.civilregionalismid
+    left outer join hjcn1.person t055 on t052.civilregionalismid=t055.civilregionalismid
+    left outer join hjcn1.systemuser t056 on t055.personid=t056.personid
+    where 1=1
+    and t02.actionlistid is not null
+    and t02.flowactionid is not null
+    and t054.parentid is not null
+    and t041.FLOWACTIONSTATUSID = &apos;11113&apos;
+    <if test="reportType!=null">
+      and t031.reportstageid=#{reportType,jdbcType=VARCHAR}
+    </if>
+    <if test="companyType!=null">
+      and t05.disasterkindid=#{companyType,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.Person2016">
+    insert into HJCN1.PERSON (PERSONID, PERSONADDRESS, PERSONCREATETIME, 
+      PERSONCREATEUSER, PERSONEMAIL, PERSONMOBILE, 
+      PERSONNAME, PERSONTEL, CIVILREGIONALISMID
+      )
+    values (#{personid,jdbcType=VARCHAR}, #{personaddress,jdbcType=VARCHAR}, #{personcreatetime,jdbcType=TIMESTAMP}, 
+      #{personcreateuser,jdbcType=VARCHAR}, #{personemail,jdbcType=VARCHAR}, #{personmobile,jdbcType=VARCHAR}, 
+      #{personname,jdbcType=VARCHAR}, #{persontel,jdbcType=VARCHAR}, #{civilregionalismid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.Person2016">
+    insert into HJCN1.PERSON
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personid != null">
+        PERSONID,
+      </if>
+      <if test="personaddress != null">
+        PERSONADDRESS,
+      </if>
+      <if test="personcreatetime != null">
+        PERSONCREATETIME,
+      </if>
+      <if test="personcreateuser != null">
+        PERSONCREATEUSER,
+      </if>
+      <if test="personemail != null">
+        PERSONEMAIL,
+      </if>
+      <if test="personmobile != null">
+        PERSONMOBILE,
+      </if>
+      <if test="personname != null">
+        PERSONNAME,
+      </if>
+      <if test="persontel != null">
+        PERSONTEL,
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personid != null">
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="personaddress != null">
+        #{personaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="personcreatetime != null">
+        #{personcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personcreateuser != null">
+        #{personcreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="personemail != null">
+        #{personemail,jdbcType=VARCHAR},
+      </if>
+      <if test="personmobile != null">
+        #{personmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="personname != null">
+        #{personname,jdbcType=VARCHAR},
+      </if>
+      <if test="persontel != null">
+        #{persontel,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

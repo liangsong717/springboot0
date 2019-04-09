@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2017.mapper.Mthc2017Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthc2017">
+    <result column="MTHC" jdbcType="VARCHAR" property="mthc" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="QYMC" jdbcType="VARCHAR" property="qymc" />
+    <result column="XYDM" jdbcType="VARCHAR" property="xydm" />
+    <result column="TCMKMC" jdbcType="VARCHAR" property="tcmkmc" />
+    <result column="MKSZD" jdbcType="VARCHAR" property="mkszd" />
+    <result column="HDNL" jdbcType="VARCHAR" property="hdnl" />
+    <result column="TCSJ" jdbcType="VARCHAR" property="tcsj" />
+    <result column="SFFB" jdbcType="VARCHAR" property="sffb" />
+    <result column="SFYS" jdbcType="VARCHAR" property="sfys" />
+    <result column="REPORTTIME" jdbcType="VARCHAR" property="reporttime" />
+    <result column="TCHSFGS" jdbcType="VARCHAR" property="tchsfgs" />
+    <result column="SFSBBJLXH" jdbcType="VARCHAR" property="sfsbbjlxh" />
+    <result column="SFSC" jdbcType="VARCHAR" property="sfsc" />
+    <result column="CKXKZH" jdbcType="VARCHAR" property="ckxkzh" />
+    <result column="SFZXCKXKZ" jdbcType="VARCHAR" property="sfzxckxkz" />
+    <result column="CKXKZZXSJ" jdbcType="VARCHAR" property="ckxkzzxsj" />
+    <result column="CKXKZZXSFGG" jdbcType="VARCHAR" property="ckxkzzxsfgg" />
+    <result column="AQSCXKZH" jdbcType="VARCHAR" property="aqscxkzh" />
+    <result column="SFZXAQSCXKZ" jdbcType="VARCHAR" property="sfzxaqscxkz" />
+    <result column="AQSCXKZZXSJ" jdbcType="VARCHAR" property="aqscxkzzxsj" />
+    <result column="AQSCXKZZXSFGG" jdbcType="VARCHAR" property="aqscxkzzxsfgg" />
+    <result column="HZWJH" jdbcType="VARCHAR" property="hzwjh" />
+    <result column="SFCXHZWJ" jdbcType="VARCHAR" property="sfcxhzwj" />
+    <result column="HZWJCXSJ" jdbcType="VARCHAR" property="hzwjcxsj" />
+    <result column="HZWJSFGG" jdbcType="VARCHAR" property="hzwjsfgg" />
+    <result column="SFSZHFA" jdbcType="VARCHAR" property="sfszhfa" />
+    <result column="SFRQTC" jdbcType="VARCHAR" property="sfrqtc" />
+    <result column="SFLQCZJJ" jdbcType="VARCHAR" property="sflqczjj" />
+    <result column="HCSTATE" jdbcType="VARCHAR" property="hcstate" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="PARENTID" jdbcType="VARCHAR" property="parentid" />
+    <result column="HCISNEW" jdbcType="VARCHAR" property="hcisnew" />
+  </resultMap>
+  <resultMap id="ResultMap_mc" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.CiviIdAndMkmc">
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="QYMC" jdbcType="VARCHAR" property="qymc" />
+    <result column="TCMKMC" jdbcType="VARCHAR" property="tcmkmc" />
+  </resultMap>
+  <select id="selectCiviIdAndMkmc" parameterType="java.lang.String" resultMap="ResultMap_mc">
+    select civilregionalismid,qymc,tcmkmc from mthc where 1=1
+    <if test="civilregionalismid!=null">
+      and civilregionalismid=#{civilregionalismid,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthc2017">
+    insert into CNZB.MTHC (MTHC, CIVILREGIONALISMID, QYMC,
+      XYDM, TCMKMC, MKSZD, 
+      HDNL, TCSJ, SFFB, SFYS, 
+      REPORTTIME, TCHSFGS, SFSBBJLXH, 
+      SFSC, CKXKZH, SFZXCKXKZ, 
+      CKXKZZXSJ, CKXKZZXSFGG, AQSCXKZH, 
+      SFZXAQSCXKZ, AQSCXKZZXSJ, AQSCXKZZXSFGG, 
+      HZWJH, SFCXHZWJ, HZWJCXSJ, 
+      HZWJSFGG, SFSZHFA, SFRQTC, 
+      SFLQCZJJ, HCSTATE, CREATETIME, 
+      PARENTID, HCISNEW)
+    values (#{mthc,jdbcType=VARCHAR}, #{civilregionalismid,jdbcType=VARCHAR}, #{qymc,jdbcType=VARCHAR}, 
+      #{xydm,jdbcType=VARCHAR}, #{tcmkmc,jdbcType=VARCHAR}, #{mkszd,jdbcType=VARCHAR}, 
+      #{hdnl,jdbcType=VARCHAR}, #{tcsj,jdbcType=VARCHAR}, #{sffb,jdbcType=VARCHAR}, #{sfys,jdbcType=VARCHAR}, 
+      #{reporttime,jdbcType=VARCHAR}, #{tchsfgs,jdbcType=VARCHAR}, #{sfsbbjlxh,jdbcType=VARCHAR}, 
+      #{sfsc,jdbcType=VARCHAR}, #{ckxkzh,jdbcType=VARCHAR}, #{sfzxckxkz,jdbcType=VARCHAR}, 
+      #{ckxkzzxsj,jdbcType=VARCHAR}, #{ckxkzzxsfgg,jdbcType=VARCHAR}, #{aqscxkzh,jdbcType=VARCHAR}, 
+      #{sfzxaqscxkz,jdbcType=VARCHAR}, #{aqscxkzzxsj,jdbcType=VARCHAR}, #{aqscxkzzxsfgg,jdbcType=VARCHAR}, 
+      #{hzwjh,jdbcType=VARCHAR}, #{sfcxhzwj,jdbcType=VARCHAR}, #{hzwjcxsj,jdbcType=VARCHAR}, 
+      #{hzwjsfgg,jdbcType=VARCHAR}, #{sfszhfa,jdbcType=VARCHAR}, #{sfrqtc,jdbcType=VARCHAR}, 
+      #{sflqczjj,jdbcType=VARCHAR}, #{hcstate,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{parentid,jdbcType=VARCHAR}, #{hcisnew,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthc2017">
+    insert into CNZB.MTHC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mthc != null">
+        MTHC,
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+      <if test="qymc != null">
+        QYMC,
+      </if>
+      <if test="xydm != null">
+        XYDM,
+      </if>
+      <if test="tcmkmc != null">
+        TCMKMC,
+      </if>
+      <if test="mkszd != null">
+        MKSZD,
+      </if>
+      <if test="hdnl != null">
+        HDNL,
+      </if>
+      <if test="tcsj != null">
+        TCSJ,
+      </if>
+      <if test="sffb != null">
+        SFFB,
+      </if>
+      <if test="sfys != null">
+        SFYS,
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME,
+      </if>
+      <if test="tchsfgs != null">
+        TCHSFGS,
+      </if>
+      <if test="sfsbbjlxh != null">
+        SFSBBJLXH,
+      </if>
+      <if test="sfsc != null">
+        SFSC,
+      </if>
+      <if test="ckxkzh != null">
+        CKXKZH,
+      </if>
+      <if test="sfzxckxkz != null">
+        SFZXCKXKZ,
+      </if>
+      <if test="ckxkzzxsj != null">
+        CKXKZZXSJ,
+      </if>
+      <if test="ckxkzzxsfgg != null">
+        CKXKZZXSFGG,
+      </if>
+      <if test="aqscxkzh != null">
+        AQSCXKZH,
+      </if>
+      <if test="sfzxaqscxkz != null">
+        SFZXAQSCXKZ,
+      </if>
+      <if test="aqscxkzzxsj != null">
+        AQSCXKZZXSJ,
+      </if>
+      <if test="aqscxkzzxsfgg != null">
+        AQSCXKZZXSFGG,
+      </if>
+      <if test="hzwjh != null">
+        HZWJH,
+      </if>
+      <if test="sfcxhzwj != null">
+        SFCXHZWJ,
+      </if>
+      <if test="hzwjcxsj != null">
+        HZWJCXSJ,
+      </if>
+      <if test="hzwjsfgg != null">
+        HZWJSFGG,
+      </if>
+      <if test="sfszhfa != null">
+        SFSZHFA,
+      </if>
+      <if test="sfrqtc != null">
+        SFRQTC,
+      </if>
+      <if test="sflqczjj != null">
+        SFLQCZJJ,
+      </if>
+      <if test="hcstate != null">
+        HCSTATE,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="hcisnew != null">
+        HCISNEW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mthc != null">
+        #{mthc,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="qymc != null">
+        #{qymc,jdbcType=VARCHAR},
+      </if>
+      <if test="xydm != null">
+        #{xydm,jdbcType=VARCHAR},
+      </if>
+      <if test="tcmkmc != null">
+        #{tcmkmc,jdbcType=VARCHAR},
+      </if>
+      <if test="mkszd != null">
+        #{mkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="hdnl != null">
+        #{hdnl,jdbcType=VARCHAR},
+      </if>
+      <if test="tcsj != null">
+        #{tcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sffb != null">
+        #{sffb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfys != null">
+        #{sfys,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null">
+        #{reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="tchsfgs != null">
+        #{tchsfgs,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsbbjlxh != null">
+        #{sfsbbjlxh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfsc != null">
+        #{sfsc,jdbcType=VARCHAR},
+      </if>
+      <if test="ckxkzh != null">
+        #{ckxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzxckxkz != null">
+        #{sfzxckxkz,jdbcType=VARCHAR},
+      </if>
+      <if test="ckxkzzxsj != null">
+        #{ckxkzzxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="ckxkzzxsfgg != null">
+        #{ckxkzzxsfgg,jdbcType=VARCHAR},
+      </if>
+      <if test="aqscxkzh != null">
+        #{aqscxkzh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfzxaqscxkz != null">
+        #{sfzxaqscxkz,jdbcType=VARCHAR},
+      </if>
+      <if test="aqscxkzzxsj != null">
+        #{aqscxkzzxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="aqscxkzzxsfgg != null">
+        #{aqscxkzzxsfgg,jdbcType=VARCHAR},
+      </if>
+      <if test="hzwjh != null">
+        #{hzwjh,jdbcType=VARCHAR},
+      </if>
+      <if test="sfcxhzwj != null">
+        #{sfcxhzwj,jdbcType=VARCHAR},
+      </if>
+      <if test="hzwjcxsj != null">
+        #{hzwjcxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="hzwjsfgg != null">
+        #{hzwjsfgg,jdbcType=VARCHAR},
+      </if>
+      <if test="sfszhfa != null">
+        #{sfszhfa,jdbcType=VARCHAR},
+      </if>
+      <if test="sfrqtc != null">
+        #{sfrqtc,jdbcType=VARCHAR},
+      </if>
+      <if test="sflqczjj != null">
+        #{sflqczjj,jdbcType=VARCHAR},
+      </if>
+      <if test="hcstate != null">
+        #{hcstate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="hcisnew != null">
+        #{hcisnew,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

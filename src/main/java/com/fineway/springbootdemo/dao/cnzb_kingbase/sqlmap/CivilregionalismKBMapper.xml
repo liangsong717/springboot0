@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb_kingbase.mapper.CivilregionalismKBMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.CivilregionalismKB">
+    <id column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="CIVILREGIONALISMCODE" jdbcType="VARCHAR" property="civilregionalismcode" />
+    <result column="CIVILREGIONALISMCREATETIME" jdbcType="TIMESTAMP" property="civilregionalismcreatetime" />
+    <result column="CIVILREGIONALISMCREATEUSER" jdbcType="VARCHAR" property="civilregionalismcreateuser" />
+    <result column="CIVILREGIONALISMLEVELSHORTNAME" jdbcType="VARCHAR" property="civilregionalismlevelshortname" />
+    <result column="CIVILREGIONALISMNAME" jdbcType="VARCHAR" property="civilregionalismname" />
+    <result column="CIVILREGIONALISMORDERNUMBER" jdbcType="NUMERIC" property="civilregionalismordernumber" />
+    <result column="CIVILREGIONALISMSHORTNAME" jdbcType="VARCHAR" property="civilregionalismshortname" />
+    <result column="REGIONALISMORDERNUMBER" jdbcType="NUMERIC" property="regionalismordernumber" />
+    <result column="PARENTID" jdbcType="VARCHAR" property="parentid" />
+    <result column="REPORTPID" jdbcType="VARCHAR" property="reportpid" />
+    <result column="CIVILREGIONALISMLEVELID" jdbcType="VARCHAR" property="civilregionalismlevelid" />
+    <result column="REGIONALISMLEVELSHORTNAMECODE" jdbcType="VARCHAR" property="regionalismlevelshortnamecode" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="YEAR" jdbcType="VARCHAR" property="year" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CIVILREGIONALISMID, CIVILREGIONALISMCODE, CIVILREGIONALISMCREATETIME, CIVILREGIONALISMCREATEUSER, 
+    CIVILREGIONALISMLEVELSHORTNAME, CIVILREGIONALISMNAME, CIVILREGIONALISMORDERNUMBER, 
+    CIVILREGIONALISMSHORTNAME, REGIONALISMORDERNUMBER, PARENTID, REPORTPID, CIVILREGIONALISMLEVELID, 
+    REGIONALISMLEVELSHORTNAMECODE, TYPE, YEAR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PUBLIC.CIVILREGIONALISM
+    where CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PUBLIC.CIVILREGIONALISM
+    where CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.CivilregionalismKB">
+    insert into PUBLIC.CIVILREGIONALISM (CIVILREGIONALISMID, CIVILREGIONALISMCODE, 
+      CIVILREGIONALISMCREATETIME, CIVILREGIONALISMCREATEUSER, 
+      CIVILREGIONALISMLEVELSHORTNAME, CIVILREGIONALISMNAME, 
+      CIVILREGIONALISMORDERNUMBER, CIVILREGIONALISMSHORTNAME, 
+      REGIONALISMORDERNUMBER, PARENTID, REPORTPID, 
+      CIVILREGIONALISMLEVELID, REGIONALISMLEVELSHORTNAMECODE, 
+      TYPE, YEAR)
+    values (#{civilregionalismid,jdbcType=VARCHAR}, #{civilregionalismcode,jdbcType=VARCHAR}, 
+      #{civilregionalismcreatetime,jdbcType=TIMESTAMP}, #{civilregionalismcreateuser,jdbcType=VARCHAR}, 
+      #{civilregionalismlevelshortname,jdbcType=VARCHAR}, #{civilregionalismname,jdbcType=VARCHAR}, 
+      #{civilregionalismordernumber,jdbcType=NUMERIC}, #{civilregionalismshortname,jdbcType=VARCHAR}, 
+      #{regionalismordernumber,jdbcType=NUMERIC}, #{parentid,jdbcType=VARCHAR}, #{reportpid,jdbcType=VARCHAR}, 
+      #{civilregionalismlevelid,jdbcType=VARCHAR}, #{regionalismlevelshortnamecode,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.CivilregionalismKB">
+    insert into PUBLIC.CIVILREGIONALISM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+      <if test="civilregionalismcode != null">
+        CIVILREGIONALISMCODE,
+      </if>
+      <if test="civilregionalismcreatetime != null">
+        CIVILREGIONALISMCREATETIME,
+      </if>
+      <if test="civilregionalismcreateuser != null">
+        CIVILREGIONALISMCREATEUSER,
+      </if>
+      <if test="civilregionalismlevelshortname != null">
+        CIVILREGIONALISMLEVELSHORTNAME,
+      </if>
+      <if test="civilregionalismname != null">
+        CIVILREGIONALISMNAME,
+      </if>
+      <if test="civilregionalismordernumber != null">
+        CIVILREGIONALISMORDERNUMBER,
+      </if>
+      <if test="civilregionalismshortname != null">
+        CIVILREGIONALISMSHORTNAME,
+      </if>
+      <if test="regionalismordernumber != null">
+        REGIONALISMORDERNUMBER,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="reportpid != null">
+        REPORTPID,
+      </if>
+      <if test="civilregionalismlevelid != null">
+        CIVILREGIONALISMLEVELID,
+      </if>
+      <if test="regionalismlevelshortnamecode != null">
+        REGIONALISMLEVELSHORTNAMECODE,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="year != null">
+        YEAR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismcode != null">
+        #{civilregionalismcode,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismcreatetime != null">
+        #{civilregionalismcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="civilregionalismcreateuser != null">
+        #{civilregionalismcreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismlevelshortname != null">
+        #{civilregionalismlevelshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismname != null">
+        #{civilregionalismname,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismordernumber != null">
+        #{civilregionalismordernumber,jdbcType=NUMERIC},
+      </if>
+      <if test="civilregionalismshortname != null">
+        #{civilregionalismshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="regionalismordernumber != null">
+        #{regionalismordernumber,jdbcType=NUMERIC},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportpid != null">
+        #{reportpid,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismlevelid != null">
+        #{civilregionalismlevelid,jdbcType=VARCHAR},
+      </if>
+      <if test="regionalismlevelshortnamecode != null">
+        #{regionalismlevelshortnamecode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.CivilregionalismKB">
+    update PUBLIC.CIVILREGIONALISM
+    <set>
+      <if test="civilregionalismcode != null">
+        CIVILREGIONALISMCODE = #{civilregionalismcode,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismcreatetime != null">
+        CIVILREGIONALISMCREATETIME = #{civilregionalismcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="civilregionalismcreateuser != null">
+        CIVILREGIONALISMCREATEUSER = #{civilregionalismcreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismlevelshortname != null">
+        CIVILREGIONALISMLEVELSHORTNAME = #{civilregionalismlevelshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismname != null">
+        CIVILREGIONALISMNAME = #{civilregionalismname,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismordernumber != null">
+        CIVILREGIONALISMORDERNUMBER = #{civilregionalismordernumber,jdbcType=NUMERIC},
+      </if>
+      <if test="civilregionalismshortname != null">
+        CIVILREGIONALISMSHORTNAME = #{civilregionalismshortname,jdbcType=VARCHAR},
+      </if>
+      <if test="regionalismordernumber != null">
+        REGIONALISMORDERNUMBER = #{regionalismordernumber,jdbcType=NUMERIC},
+      </if>
+      <if test="parentid != null">
+        PARENTID = #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportpid != null">
+        REPORTPID = #{reportpid,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismlevelid != null">
+        CIVILREGIONALISMLEVELID = #{civilregionalismlevelid,jdbcType=VARCHAR},
+      </if>
+      <if test="regionalismlevelshortnamecode != null">
+        REGIONALISMLEVELSHORTNAMECODE = #{regionalismlevelshortnamecode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        YEAR = #{year,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.CivilregionalismKB">
+    update PUBLIC.CIVILREGIONALISM
+    set CIVILREGIONALISMCODE = #{civilregionalismcode,jdbcType=VARCHAR},
+      CIVILREGIONALISMCREATETIME = #{civilregionalismcreatetime,jdbcType=TIMESTAMP},
+      CIVILREGIONALISMCREATEUSER = #{civilregionalismcreateuser,jdbcType=VARCHAR},
+      CIVILREGIONALISMLEVELSHORTNAME = #{civilregionalismlevelshortname,jdbcType=VARCHAR},
+      CIVILREGIONALISMNAME = #{civilregionalismname,jdbcType=VARCHAR},
+      CIVILREGIONALISMORDERNUMBER = #{civilregionalismordernumber,jdbcType=NUMERIC},
+      CIVILREGIONALISMSHORTNAME = #{civilregionalismshortname,jdbcType=VARCHAR},
+      REGIONALISMORDERNUMBER = #{regionalismordernumber,jdbcType=NUMERIC},
+      PARENTID = #{parentid,jdbcType=VARCHAR},
+      REPORTPID = #{reportpid,jdbcType=VARCHAR},
+      CIVILREGIONALISMLEVELID = #{civilregionalismlevelid,jdbcType=VARCHAR},
+      REGIONALISMLEVELSHORTNAMECODE = #{regionalismlevelshortnamecode,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      YEAR = #{year,jdbcType=VARCHAR}
+    where CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR}
+  </update>
+</mapper>

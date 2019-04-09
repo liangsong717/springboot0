@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.SystemUser2016Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.SystemUser2016">
+    <result column="SYSTEMUSERID" jdbcType="VARCHAR" property="systemuserid" />
+    <result column="SYSTEMUSERCREATETIME" jdbcType="TIMESTAMP" property="systemusercreatetime" />
+    <result column="SYSTEMUSERCREATEUSER" jdbcType="VARCHAR" property="systemusercreateuser" />
+    <result column="SYSTEMUSERNAME" jdbcType="VARCHAR" property="systemusername" />
+    <result column="SYSTEMUSERPASSWORD" jdbcType="VARCHAR" property="systemuserpassword" />
+    <result column="PERSONID" jdbcType="VARCHAR" property="personid" />
+    <result column="USERROLEID" jdbcType="VARCHAR" property="userroleid" />
+    <result column="CORRIGENDACONTACTNAME" jdbcType="VARCHAR" property="corrigendacontactname" />
+    <result column="CORRIGENDACONTACTPHONE" jdbcType="VARCHAR" property="corrigendacontactphone" />
+  </resultMap>
+  <resultMap id="ResultMap2018" type="com.fineway.springbootdemo.dao.cnzb2018.pojo.SystemUser2018">
+    <id column="SYSTEMUSERID" jdbcType="VARCHAR" property="systemuserid" />
+    <result column="SYSTEMUSERCREATETIME" jdbcType="TIMESTAMP" property="systemusercreatetime" />
+    <result column="SYSTEMUSERCREATEUSER" jdbcType="VARCHAR" property="systemusercreateuser" />
+    <result column="SYSTEMUSERNAME" jdbcType="VARCHAR" property="systemusername" />
+    <result column="SYSTEMUSERPASSWORD" jdbcType="VARCHAR" property="systemuserpassword" />
+    <result column="PERSONID" jdbcType="VARCHAR" property="personid" />
+    <result column="USERROLEID" jdbcType="VARCHAR" property="userroleid" />
+    <result column="CORRIGENDACONTACTNAME" jdbcType="VARCHAR" property="corrigendacontactname" />
+    <result column="CORRIGENDACONTACTPHONE" jdbcType="VARCHAR" property="corrigendacontactphone" />
+  </resultMap>
+  <select id="selectByChuBao4_LeftJoinCivi" parameterType="java.lang.String" resultMap="ResultMap2018">
+    select
+    distinct t056.*
+    from hjcn1.historyreport t02
+    left outer join hjcn1.actionlist t03 on t03.actionlistid = t02.actionlistid
+    left outer join hjcn1.reportstage t031 on t031.reportstageid = t03.reportstageid
+    left outer join hjcn1.flowaction t04 on t02.flowactionid = t04.flowactionid
+    left outer join hjcn1.flowactionstatus t041 on t04.flowactionstatusid = t041.flowactionstatusid
+    left outer join hjcn1.disaster t05 on t02.disasterid = t05.disasterid
+    left outer join hjcn1.creditionrelation t051 on t051.creditionrelationid = t05.creditionrelationid
+    left outer join hjcn1.civilregionalism t052 on t051.civilregionalismid = t052.civilregionalismid
+    left outer join hjcn1.civilregionalismlevel t053 on t053.civilregionalismlevelid = t052.civilregionalismlevelid
+    left outer join hjcn1.civilregionalism t054 on t052.parentid=t054.civilregionalismid
+    left outer join hjcn1.person t055 on t052.civilregionalismid=t055.civilregionalismid
+    left outer join hjcn1.systemuser t056 on t055.personid=t056.personid
+    where 1=1
+    and t02.actionlistid is not null
+    and t02.flowactionid is not null
+    and t054.parentid is not null
+    and t041.FLOWACTIONSTATUSID = &apos;11113&apos;
+    <if test="reportType!=null">
+      and t031.reportstageid=#{reportType,jdbcType=VARCHAR}
+    </if>
+    <if test="companyType!=null">
+      and t05.disasterkindid=#{companyType,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.SystemUser2016">
+    insert into HJCN1.SYSTEMUSER (SYSTEMUSERID, SYSTEMUSERCREATETIME, 
+      SYSTEMUSERCREATEUSER, SYSTEMUSERNAME, SYSTEMUSERPASSWORD, 
+      PERSONID, USERROLEID, CORRIGENDACONTACTNAME, 
+      CORRIGENDACONTACTPHONE)
+    values (#{systemuserid,jdbcType=VARCHAR}, #{systemusercreatetime,jdbcType=TIMESTAMP}, 
+      #{systemusercreateuser,jdbcType=VARCHAR}, #{systemusername,jdbcType=VARCHAR}, #{systemuserpassword,jdbcType=VARCHAR}, 
+      #{personid,jdbcType=VARCHAR}, #{userroleid,jdbcType=VARCHAR}, #{corrigendacontactname,jdbcType=VARCHAR}, 
+      #{corrigendacontactphone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.SystemUser2016">
+    insert into HJCN1.SYSTEMUSER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="systemuserid != null">
+        SYSTEMUSERID,
+      </if>
+      <if test="systemusercreatetime != null">
+        SYSTEMUSERCREATETIME,
+      </if>
+      <if test="systemusercreateuser != null">
+        SYSTEMUSERCREATEUSER,
+      </if>
+      <if test="systemusername != null">
+        SYSTEMUSERNAME,
+      </if>
+      <if test="systemuserpassword != null">
+        SYSTEMUSERPASSWORD,
+      </if>
+      <if test="personid != null">
+        PERSONID,
+      </if>
+      <if test="userroleid != null">
+        USERROLEID,
+      </if>
+      <if test="corrigendacontactname != null">
+        CORRIGENDACONTACTNAME,
+      </if>
+      <if test="corrigendacontactphone != null">
+        CORRIGENDACONTACTPHONE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="systemuserid != null">
+        #{systemuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="systemusercreatetime != null">
+        #{systemusercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemusercreateuser != null">
+        #{systemusercreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="systemusername != null">
+        #{systemusername,jdbcType=VARCHAR},
+      </if>
+      <if test="systemuserpassword != null">
+        #{systemuserpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null">
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="userroleid != null">
+        #{userroleid,jdbcType=VARCHAR},
+      </if>
+      <if test="corrigendacontactname != null">
+        #{corrigendacontactname,jdbcType=VARCHAR},
+      </if>
+      <if test="corrigendacontactphone != null">
+        #{corrigendacontactphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.CivilregionalismLevelMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.CivilregionalismLevel">
+    <result column="CIVILREGIONALISMLEVELID" jdbcType="VARCHAR" property="civilregionalismlevelid" />
+    <result column="CIVILREGIONALISMLEVELNAME" jdbcType="VARCHAR" property="civilregionalismlevelname" />
+    <result column="CIVILREGIONALISMLEVELNUMBER" jdbcType="DECIMAL" property="civilregionalismlevelnumber" />
+    <result column="LEVELDESCRIPTION" jdbcType="VARCHAR" property="leveldescription" />
+    <result column="CCIVILREGIONALISMLEVELNUMBER" jdbcType="DECIMAL" property="ccivilregionalismlevelnumber" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.CivilregionalismLevel">
+    insert into HJCN1.CIVILREGIONALISMLEVEL (CIVILREGIONALISMLEVELID, CIVILREGIONALISMLEVELNAME, 
+      CIVILREGIONALISMLEVELNUMBER, LEVELDESCRIPTION, 
+      CCIVILREGIONALISMLEVELNUMBER)
+    values (#{civilregionalismlevelid,jdbcType=VARCHAR}, #{civilregionalismlevelname,jdbcType=VARCHAR}, 
+      #{civilregionalismlevelnumber,jdbcType=DECIMAL}, #{leveldescription,jdbcType=VARCHAR}, 
+      #{ccivilregionalismlevelnumber,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.CivilregionalismLevel">
+    insert into HJCN1.CIVILREGIONALISMLEVEL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="civilregionalismlevelid != null">
+        CIVILREGIONALISMLEVELID,
+      </if>
+      <if test="civilregionalismlevelname != null">
+        CIVILREGIONALISMLEVELNAME,
+      </if>
+      <if test="civilregionalismlevelnumber != null">
+        CIVILREGIONALISMLEVELNUMBER,
+      </if>
+      <if test="leveldescription != null">
+        LEVELDESCRIPTION,
+      </if>
+      <if test="ccivilregionalismlevelnumber != null">
+        CCIVILREGIONALISMLEVELNUMBER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="civilregionalismlevelid != null">
+        #{civilregionalismlevelid,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismlevelname != null">
+        #{civilregionalismlevelname,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismlevelnumber != null">
+        #{civilregionalismlevelnumber,jdbcType=DECIMAL},
+      </if>
+      <if test="leveldescription != null">
+        #{leveldescription,jdbcType=VARCHAR},
+      </if>
+      <if test="ccivilregionalismlevelnumber != null">
+        #{ccivilregionalismlevelnumber,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb_kingbase.mapper.GtybKBMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.GtybKB">
+    <id column="GTYBID" jdbcType="VARCHAR" property="gtybid" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="REPORTTIME" jdbcType="VARCHAR" property="reporttime" />
+    <result column="LTBYTCZB" jdbcType="VARCHAR" property="ltbytczb" />
+    <result column="LTBYYJCN" jdbcType="NUMERIC" property="ltbyyjcn" />
+    <result column="LTSJTCSJ" jdbcType="VARCHAR" property="ltsjtcsj" />
+    <result column="LTBYSFTC" jdbcType="VARCHAR" property="ltbysftc" />
+    <result column="LGBYTCZB" jdbcType="VARCHAR" property="lgbytczb" />
+    <result column="LGBYYJCN" jdbcType="NUMERIC" property="lgbyyjcn" />
+    <result column="LGSJTCSJ" jdbcType="VARCHAR" property="lgsjtcsj" />
+    <result column="LGBYSFTC" jdbcType="VARCHAR" property="lgbysftc" />
+    <result column="YSL" jdbcType="NUMERIC" property="ysl" />
+    <result column="PSL" jdbcType="NUMERIC" property="psl" />
+    <result column="YDL" jdbcType="NUMERIC" property="ydl" />
+    <result column="SJGX" jdbcType="NUMERIC" property="sjgx" />
+    <result column="QTGX" jdbcType="NUMERIC" property="qtgx" />
+    <result column="GLGX" jdbcType="NUMERIC" property="glgx" />
+    <result column="ZLGX" jdbcType="NUMERIC" property="zlgx" />
+    <result column="JHTQTY" jdbcType="NUMERIC" property="jhtqty" />
+    <result column="JHYFJCHT" jdbcType="NUMERIC" property="jhyfjcht" />
+    <result column="JHNBAZ" jdbcType="NUMERIC" property="jhnbaz" />
+    <result column="QTJH" jdbcType="NUMERIC" property="qtjh" />
+    <result column="GTYBJRQKLXID" jdbcType="VARCHAR" property="gtybjrqklxid" />
+    <result column="YHDQDK" jdbcType="NUMERIC" property="yhdqdk" />
+    <result column="YHCQDK" jdbcType="NUMERIC" property="yhcqdk" />
+    <result column="FYHJRJGRZE" jdbcType="NUMERIC" property="fyhjrjgrze" />
+    <result column="QYLRLC" jdbcType="NUMERIC" property="qylrlc" />
+    <result column="QYGB" jdbcType="NUMERIC" property="qygb" />
+    <result column="QYZJRZE" jdbcType="NUMERIC" property="qyzjrze" />
+    <result column="QTRZ" jdbcType="NUMERIC" property="qtrz" />
+    <result column="YCCSBXHJSL" jdbcType="VARCHAR" property="yccsbxhjsl" />
+    <result column="YCCSBSFCDBC" jdbcType="VARCHAR" property="yccsbsfcdbc" />
+    <result column="YCCSBSFYS" jdbcType="VARCHAR" property="yccsbsfys" />
+    <result column="WCCSBXHJSL" jdbcType="VARCHAR" property="wccsbxhjsl" />
+    <result column="WCCSBSFGS" jdbcType="VARCHAR" property="wccsbsfgs" />
+    <result column="WCCSBSFYS" jdbcType="VARCHAR" property="wccsbsfys" />
+    <result column="ZCCZQK" jdbcType="VARCHAR" property="zcczqk" />
+    <result column="ZFWZSFGS" jdbcType="VARCHAR" property="zfwzsfgs" />
+    <result column="SBZT" jdbcType="VARCHAR" property="sbzt" />
+    <result column="SHZT" jdbcType="VARCHAR" property="shzt" />
+    <result column="SHSM" jdbcType="VARCHAR" property="shsm" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="ZZJGDM" jdbcType="VARCHAR" property="zzjgdm" />
+    <result column="XYDM" jdbcType="VARCHAR" property="xydm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    GTYBID, CIVILREGIONALISMID, REPORTTIME, LTBYTCZB, LTBYYJCN, LTSJTCSJ, LTBYSFTC, LGBYTCZB, 
+    LGBYYJCN, LGSJTCSJ, LGBYSFTC, YSL, PSL, YDL, SJGX, QTGX, GLGX, ZLGX, JHTQTY, JHYFJCHT, 
+    JHNBAZ, QTJH, GTYBJRQKLXID, YHDQDK, YHCQDK, FYHJRJGRZE, QYLRLC, QYGB, QYZJRZE, QTRZ, 
+    YCCSBXHJSL, YCCSBSFCDBC, YCCSBSFYS, WCCSBXHJSL, WCCSBSFGS, WCCSBSFYS, ZCCZQK, ZFWZSFGS, 
+    SBZT, SHZT, SHSM, CREATETIME, ZZJGDM, XYDM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PUBLIC.GTYB
+    where GTYBID = #{gtybid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PUBLIC.GTYB
+    where GTYBID = #{gtybid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.GtybKB">
+    insert into PUBLIC.GTYB (GTYBID, CIVILREGIONALISMID, REPORTTIME, 
+      LTBYTCZB, LTBYYJCN, LTSJTCSJ, 
+      LTBYSFTC, LGBYTCZB, LGBYYJCN, 
+      LGSJTCSJ, LGBYSFTC, YSL, 
+      PSL, YDL, SJGX, QTGX, 
+      GLGX, ZLGX, JHTQTY, 
+      JHYFJCHT, JHNBAZ, QTJH, 
+      GTYBJRQKLXID, YHDQDK, YHCQDK, 
+      FYHJRJGRZE, QYLRLC, QYGB, 
+      QYZJRZE, QTRZ, YCCSBXHJSL, 
+      YCCSBSFCDBC, YCCSBSFYS, WCCSBXHJSL, 
+      WCCSBSFGS, WCCSBSFYS, ZCCZQK, 
+      ZFWZSFGS, SBZT, SHZT, 
+      SHSM, CREATETIME, ZZJGDM, 
+      XYDM)
+    values (#{gtybid,jdbcType=VARCHAR}, #{civilregionalismid,jdbcType=VARCHAR}, #{reporttime,jdbcType=VARCHAR}, 
+      #{ltbytczb,jdbcType=VARCHAR}, #{ltbyyjcn,jdbcType=NUMERIC}, #{ltsjtcsj,jdbcType=VARCHAR}, 
+      #{ltbysftc,jdbcType=VARCHAR}, #{lgbytczb,jdbcType=VARCHAR}, #{lgbyyjcn,jdbcType=NUMERIC}, 
+      #{lgsjtcsj,jdbcType=VARCHAR}, #{lgbysftc,jdbcType=VARCHAR}, #{ysl,jdbcType=NUMERIC}, 
+      #{psl,jdbcType=NUMERIC}, #{ydl,jdbcType=NUMERIC}, #{sjgx,jdbcType=NUMERIC}, #{qtgx,jdbcType=NUMERIC}, 
+      #{glgx,jdbcType=NUMERIC}, #{zlgx,jdbcType=NUMERIC}, #{jhtqty,jdbcType=NUMERIC}, 
+      #{jhyfjcht,jdbcType=NUMERIC}, #{jhnbaz,jdbcType=NUMERIC}, #{qtjh,jdbcType=NUMERIC}, 
+      #{gtybjrqklxid,jdbcType=VARCHAR}, #{yhdqdk,jdbcType=NUMERIC}, #{yhcqdk,jdbcType=NUMERIC}, 
+      #{fyhjrjgrze,jdbcType=NUMERIC}, #{qylrlc,jdbcType=NUMERIC}, #{qygb,jdbcType=NUMERIC}, 
+      #{qyzjrze,jdbcType=NUMERIC}, #{qtrz,jdbcType=NUMERIC}, #{yccsbxhjsl,jdbcType=VARCHAR}, 
+      #{yccsbsfcdbc,jdbcType=VARCHAR}, #{yccsbsfys,jdbcType=VARCHAR}, #{wccsbxhjsl,jdbcType=VARCHAR}, 
+      #{wccsbsfgs,jdbcType=VARCHAR}, #{wccsbsfys,jdbcType=VARCHAR}, #{zcczqk,jdbcType=VARCHAR}, 
+      #{zfwzsfgs,jdbcType=VARCHAR}, #{sbzt,jdbcType=VARCHAR}, #{shzt,jdbcType=VARCHAR}, 
+      #{shsm,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{zzjgdm,jdbcType=VARCHAR}, 
+      #{xydm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.GtybKB">
+    insert into PUBLIC.GTYB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gtybid != null">
+        GTYBID,
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME,
+      </if>
+      <if test="ltbytczb != null">
+        LTBYTCZB,
+      </if>
+      <if test="ltbyyjcn != null">
+        LTBYYJCN,
+      </if>
+      <if test="ltsjtcsj != null">
+        LTSJTCSJ,
+      </if>
+      <if test="ltbysftc != null">
+        LTBYSFTC,
+      </if>
+      <if test="lgbytczb != null">
+        LGBYTCZB,
+      </if>
+      <if test="lgbyyjcn != null">
+        LGBYYJCN,
+      </if>
+      <if test="lgsjtcsj != null">
+        LGSJTCSJ,
+      </if>
+      <if test="lgbysftc != null">
+        LGBYSFTC,
+      </if>
+      <if test="ysl != null">
+        YSL,
+      </if>
+      <if test="psl != null">
+        PSL,
+      </if>
+      <if test="ydl != null">
+        YDL,
+      </if>
+      <if test="sjgx != null">
+        SJGX,
+      </if>
+      <if test="qtgx != null">
+        QTGX,
+      </if>
+      <if test="glgx != null">
+        GLGX,
+      </if>
+      <if test="zlgx != null">
+        ZLGX,
+      </if>
+      <if test="jhtqty != null">
+        JHTQTY,
+      </if>
+      <if test="jhyfjcht != null">
+        JHYFJCHT,
+      </if>
+      <if test="jhnbaz != null">
+        JHNBAZ,
+      </if>
+      <if test="qtjh != null">
+        QTJH,
+      </if>
+      <if test="gtybjrqklxid != null">
+        GTYBJRQKLXID,
+      </if>
+      <if test="yhdqdk != null">
+        YHDQDK,
+      </if>
+      <if test="yhcqdk != null">
+        YHCQDK,
+      </if>
+      <if test="fyhjrjgrze != null">
+        FYHJRJGRZE,
+      </if>
+      <if test="qylrlc != null">
+        QYLRLC,
+      </if>
+      <if test="qygb != null">
+        QYGB,
+      </if>
+      <if test="qyzjrze != null">
+        QYZJRZE,
+      </if>
+      <if test="qtrz != null">
+        QTRZ,
+      </if>
+      <if test="yccsbxhjsl != null">
+        YCCSBXHJSL,
+      </if>
+      <if test="yccsbsfcdbc != null">
+        YCCSBSFCDBC,
+      </if>
+      <if test="yccsbsfys != null">
+        YCCSBSFYS,
+      </if>
+      <if test="wccsbxhjsl != null">
+        WCCSBXHJSL,
+      </if>
+      <if test="wccsbsfgs != null">
+        WCCSBSFGS,
+      </if>
+      <if test="wccsbsfys != null">
+        WCCSBSFYS,
+      </if>
+      <if test="zcczqk != null">
+        ZCCZQK,
+      </if>
+      <if test="zfwzsfgs != null">
+        ZFWZSFGS,
+      </if>
+      <if test="sbzt != null">
+        SBZT,
+      </if>
+      <if test="shzt != null">
+        SHZT,
+      </if>
+      <if test="shsm != null">
+        SHSM,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="zzjgdm != null">
+        ZZJGDM,
+      </if>
+      <if test="xydm != null">
+        XYDM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gtybid != null">
+        #{gtybid,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null">
+        #{reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="ltbytczb != null">
+        #{ltbytczb,jdbcType=VARCHAR},
+      </if>
+      <if test="ltbyyjcn != null">
+        #{ltbyyjcn,jdbcType=NUMERIC},
+      </if>
+      <if test="ltsjtcsj != null">
+        #{ltsjtcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="ltbysftc != null">
+        #{ltbysftc,jdbcType=VARCHAR},
+      </if>
+      <if test="lgbytczb != null">
+        #{lgbytczb,jdbcType=VARCHAR},
+      </if>
+      <if test="lgbyyjcn != null">
+        #{lgbyyjcn,jdbcType=NUMERIC},
+      </if>
+      <if test="lgsjtcsj != null">
+        #{lgsjtcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="lgbysftc != null">
+        #{lgbysftc,jdbcType=VARCHAR},
+      </if>
+      <if test="ysl != null">
+        #{ysl,jdbcType=NUMERIC},
+      </if>
+      <if test="psl != null">
+        #{psl,jdbcType=NUMERIC},
+      </if>
+      <if test="ydl != null">
+        #{ydl,jdbcType=NUMERIC},
+      </if>
+      <if test="sjgx != null">
+        #{sjgx,jdbcType=NUMERIC},
+      </if>
+      <if test="qtgx != null">
+        #{qtgx,jdbcType=NUMERIC},
+      </if>
+      <if test="glgx != null">
+        #{glgx,jdbcType=NUMERIC},
+      </if>
+      <if test="zlgx != null">
+        #{zlgx,jdbcType=NUMERIC},
+      </if>
+      <if test="jhtqty != null">
+        #{jhtqty,jdbcType=NUMERIC},
+      </if>
+      <if test="jhyfjcht != null">
+        #{jhyfjcht,jdbcType=NUMERIC},
+      </if>
+      <if test="jhnbaz != null">
+        #{jhnbaz,jdbcType=NUMERIC},
+      </if>
+      <if test="qtjh != null">
+        #{qtjh,jdbcType=NUMERIC},
+      </if>
+      <if test="gtybjrqklxid != null">
+        #{gtybjrqklxid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhdqdk != null">
+        #{yhdqdk,jdbcType=NUMERIC},
+      </if>
+      <if test="yhcqdk != null">
+        #{yhcqdk,jdbcType=NUMERIC},
+      </if>
+      <if test="fyhjrjgrze != null">
+        #{fyhjrjgrze,jdbcType=NUMERIC},
+      </if>
+      <if test="qylrlc != null">
+        #{qylrlc,jdbcType=NUMERIC},
+      </if>
+      <if test="qygb != null">
+        #{qygb,jdbcType=NUMERIC},
+      </if>
+      <if test="qyzjrze != null">
+        #{qyzjrze,jdbcType=NUMERIC},
+      </if>
+      <if test="qtrz != null">
+        #{qtrz,jdbcType=NUMERIC},
+      </if>
+      <if test="yccsbxhjsl != null">
+        #{yccsbxhjsl,jdbcType=VARCHAR},
+      </if>
+      <if test="yccsbsfcdbc != null">
+        #{yccsbsfcdbc,jdbcType=VARCHAR},
+      </if>
+      <if test="yccsbsfys != null">
+        #{yccsbsfys,jdbcType=VARCHAR},
+      </if>
+      <if test="wccsbxhjsl != null">
+        #{wccsbxhjsl,jdbcType=VARCHAR},
+      </if>
+      <if test="wccsbsfgs != null">
+        #{wccsbsfgs,jdbcType=VARCHAR},
+      </if>
+      <if test="wccsbsfys != null">
+        #{wccsbsfys,jdbcType=VARCHAR},
+      </if>
+      <if test="zcczqk != null">
+        #{zcczqk,jdbcType=VARCHAR},
+      </if>
+      <if test="zfwzsfgs != null">
+        #{zfwzsfgs,jdbcType=VARCHAR},
+      </if>
+      <if test="sbzt != null">
+        #{sbzt,jdbcType=VARCHAR},
+      </if>
+      <if test="shzt != null">
+        #{shzt,jdbcType=VARCHAR},
+      </if>
+      <if test="shsm != null">
+        #{shsm,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zzjgdm != null">
+        #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="xydm != null">
+        #{xydm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.GtybKB">
+    update PUBLIC.GTYB
+    <set>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME = #{reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="ltbytczb != null">
+        LTBYTCZB = #{ltbytczb,jdbcType=VARCHAR},
+      </if>
+      <if test="ltbyyjcn != null">
+        LTBYYJCN = #{ltbyyjcn,jdbcType=NUMERIC},
+      </if>
+      <if test="ltsjtcsj != null">
+        LTSJTCSJ = #{ltsjtcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="ltbysftc != null">
+        LTBYSFTC = #{ltbysftc,jdbcType=VARCHAR},
+      </if>
+      <if test="lgbytczb != null">
+        LGBYTCZB = #{lgbytczb,jdbcType=VARCHAR},
+      </if>
+      <if test="lgbyyjcn != null">
+        LGBYYJCN = #{lgbyyjcn,jdbcType=NUMERIC},
+      </if>
+      <if test="lgsjtcsj != null">
+        LGSJTCSJ = #{lgsjtcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="lgbysftc != null">
+        LGBYSFTC = #{lgbysftc,jdbcType=VARCHAR},
+      </if>
+      <if test="ysl != null">
+        YSL = #{ysl,jdbcType=NUMERIC},
+      </if>
+      <if test="psl != null">
+        PSL = #{psl,jdbcType=NUMERIC},
+      </if>
+      <if test="ydl != null">
+        YDL = #{ydl,jdbcType=NUMERIC},
+      </if>
+      <if test="sjgx != null">
+        SJGX = #{sjgx,jdbcType=NUMERIC},
+      </if>
+      <if test="qtgx != null">
+        QTGX = #{qtgx,jdbcType=NUMERIC},
+      </if>
+      <if test="glgx != null">
+        GLGX = #{glgx,jdbcType=NUMERIC},
+      </if>
+      <if test="zlgx != null">
+        ZLGX = #{zlgx,jdbcType=NUMERIC},
+      </if>
+      <if test="jhtqty != null">
+        JHTQTY = #{jhtqty,jdbcType=NUMERIC},
+      </if>
+      <if test="jhyfjcht != null">
+        JHYFJCHT = #{jhyfjcht,jdbcType=NUMERIC},
+      </if>
+      <if test="jhnbaz != null">
+        JHNBAZ = #{jhnbaz,jdbcType=NUMERIC},
+      </if>
+      <if test="qtjh != null">
+        QTJH = #{qtjh,jdbcType=NUMERIC},
+      </if>
+      <if test="gtybjrqklxid != null">
+        GTYBJRQKLXID = #{gtybjrqklxid,jdbcType=VARCHAR},
+      </if>
+      <if test="yhdqdk != null">
+        YHDQDK = #{yhdqdk,jdbcType=NUMERIC},
+      </if>
+      <if test="yhcqdk != null">
+        YHCQDK = #{yhcqdk,jdbcType=NUMERIC},
+      </if>
+      <if test="fyhjrjgrze != null">
+        FYHJRJGRZE = #{fyhjrjgrze,jdbcType=NUMERIC},
+      </if>
+      <if test="qylrlc != null">
+        QYLRLC = #{qylrlc,jdbcType=NUMERIC},
+      </if>
+      <if test="qygb != null">
+        QYGB = #{qygb,jdbcType=NUMERIC},
+      </if>
+      <if test="qyzjrze != null">
+        QYZJRZE = #{qyzjrze,jdbcType=NUMERIC},
+      </if>
+      <if test="qtrz != null">
+        QTRZ = #{qtrz,jdbcType=NUMERIC},
+      </if>
+      <if test="yccsbxhjsl != null">
+        YCCSBXHJSL = #{yccsbxhjsl,jdbcType=VARCHAR},
+      </if>
+      <if test="yccsbsfcdbc != null">
+        YCCSBSFCDBC = #{yccsbsfcdbc,jdbcType=VARCHAR},
+      </if>
+      <if test="yccsbsfys != null">
+        YCCSBSFYS = #{yccsbsfys,jdbcType=VARCHAR},
+      </if>
+      <if test="wccsbxhjsl != null">
+        WCCSBXHJSL = #{wccsbxhjsl,jdbcType=VARCHAR},
+      </if>
+      <if test="wccsbsfgs != null">
+        WCCSBSFGS = #{wccsbsfgs,jdbcType=VARCHAR},
+      </if>
+      <if test="wccsbsfys != null">
+        WCCSBSFYS = #{wccsbsfys,jdbcType=VARCHAR},
+      </if>
+      <if test="zcczqk != null">
+        ZCCZQK = #{zcczqk,jdbcType=VARCHAR},
+      </if>
+      <if test="zfwzsfgs != null">
+        ZFWZSFGS = #{zfwzsfgs,jdbcType=VARCHAR},
+      </if>
+      <if test="sbzt != null">
+        SBZT = #{sbzt,jdbcType=VARCHAR},
+      </if>
+      <if test="shzt != null">
+        SHZT = #{shzt,jdbcType=VARCHAR},
+      </if>
+      <if test="shsm != null">
+        SHSM = #{shsm,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zzjgdm != null">
+        ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="xydm != null">
+        XYDM = #{xydm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GTYBID = #{gtybid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.GtybKB">
+    update PUBLIC.GTYB
+    set CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR},
+      REPORTTIME = #{reporttime,jdbcType=VARCHAR},
+      LTBYTCZB = #{ltbytczb,jdbcType=VARCHAR},
+      LTBYYJCN = #{ltbyyjcn,jdbcType=NUMERIC},
+      LTSJTCSJ = #{ltsjtcsj,jdbcType=VARCHAR},
+      LTBYSFTC = #{ltbysftc,jdbcType=VARCHAR},
+      LGBYTCZB = #{lgbytczb,jdbcType=VARCHAR},
+      LGBYYJCN = #{lgbyyjcn,jdbcType=NUMERIC},
+      LGSJTCSJ = #{lgsjtcsj,jdbcType=VARCHAR},
+      LGBYSFTC = #{lgbysftc,jdbcType=VARCHAR},
+      YSL = #{ysl,jdbcType=NUMERIC},
+      PSL = #{psl,jdbcType=NUMERIC},
+      YDL = #{ydl,jdbcType=NUMERIC},
+      SJGX = #{sjgx,jdbcType=NUMERIC},
+      QTGX = #{qtgx,jdbcType=NUMERIC},
+      GLGX = #{glgx,jdbcType=NUMERIC},
+      ZLGX = #{zlgx,jdbcType=NUMERIC},
+      JHTQTY = #{jhtqty,jdbcType=NUMERIC},
+      JHYFJCHT = #{jhyfjcht,jdbcType=NUMERIC},
+      JHNBAZ = #{jhnbaz,jdbcType=NUMERIC},
+      QTJH = #{qtjh,jdbcType=NUMERIC},
+      GTYBJRQKLXID = #{gtybjrqklxid,jdbcType=VARCHAR},
+      YHDQDK = #{yhdqdk,jdbcType=NUMERIC},
+      YHCQDK = #{yhcqdk,jdbcType=NUMERIC},
+      FYHJRJGRZE = #{fyhjrjgrze,jdbcType=NUMERIC},
+      QYLRLC = #{qylrlc,jdbcType=NUMERIC},
+      QYGB = #{qygb,jdbcType=NUMERIC},
+      QYZJRZE = #{qyzjrze,jdbcType=NUMERIC},
+      QTRZ = #{qtrz,jdbcType=NUMERIC},
+      YCCSBXHJSL = #{yccsbxhjsl,jdbcType=VARCHAR},
+      YCCSBSFCDBC = #{yccsbsfcdbc,jdbcType=VARCHAR},
+      YCCSBSFYS = #{yccsbsfys,jdbcType=VARCHAR},
+      WCCSBXHJSL = #{wccsbxhjsl,jdbcType=VARCHAR},
+      WCCSBSFGS = #{wccsbsfgs,jdbcType=VARCHAR},
+      WCCSBSFYS = #{wccsbsfys,jdbcType=VARCHAR},
+      ZCCZQK = #{zcczqk,jdbcType=VARCHAR},
+      ZFWZSFGS = #{zfwzsfgs,jdbcType=VARCHAR},
+      SBZT = #{sbzt,jdbcType=VARCHAR},
+      SHZT = #{shzt,jdbcType=VARCHAR},
+      SHSM = #{shsm,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
+      XYDM = #{xydm,jdbcType=VARCHAR}
+    where GTYBID = #{gtybid,jdbcType=VARCHAR}
+  </update>
+</mapper>

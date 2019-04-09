@@ -1,0 +1,276 @@
+package com.fineway.springbootdemo.dao.cnzb2017.pojo;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class Mtcb2017 {
+    private String mtcbid;
+
+    private String civilregionalismid;
+
+    private String reporttime;
+
+    private String zzjgdm;
+
+    private String xydm;
+
+    private String tcmkmc;
+
+    private String mkszd;
+
+    private String tcsj;
+
+    private BigDecimal sjnl;
+
+    private BigDecimal hdnl;
+
+    private BigDecimal tcnl;
+
+    private BigDecimal yhdqdk;
+
+    private BigDecimal yhcqdk;
+
+    private BigDecimal fyhjrjgrze;
+
+    private BigDecimal qylrlc;
+
+    private BigDecimal qygb;
+
+    private BigDecimal qyzjrze;
+
+    private BigDecimal qtrz;
+
+    private String tclx;
+
+    private BigDecimal jhtqty;
+
+    private BigDecimal jhyfjcht;
+
+    private BigDecimal jhnbaz;
+
+    private BigDecimal qtjh;
+
+    private String shzt;
+
+    private String shsm;
+
+    private Date createtime;
+
+    private String mklb;
+
+    public String getMtcbid() {
+        return mtcbid;
+    }
+
+    public void setMtcbid(String mtcbid) {
+        this.mtcbid = mtcbid == null ? null : mtcbid.trim();
+    }
+
+    public String getCivilregionalismid() {
+        return civilregionalismid;
+    }
+
+    public void setCivilregionalismid(String civilregionalismid) {
+        this.civilregionalismid = civilregionalismid == null ? null : civilregionalismid.trim();
+    }
+
+    public String getReporttime() {
+        return reporttime;
+    }
+
+    public void setReporttime(String reporttime) {
+        this.reporttime = reporttime == null ? null : reporttime.trim();
+    }
+
+    public String getZzjgdm() {
+        return zzjgdm;
+    }
+
+    public void setZzjgdm(String zzjgdm) {
+        this.zzjgdm = zzjgdm == null ? null : zzjgdm.trim();
+    }
+
+    public String getXydm() {
+        return xydm;
+    }
+
+    public void setXydm(String xydm) {
+        this.xydm = xydm == null ? null : xydm.trim();
+    }
+
+    public String getTcmkmc() {
+        return tcmkmc;
+    }
+
+    public void setTcmkmc(String tcmkmc) {
+        this.tcmkmc = tcmkmc == null ? null : tcmkmc.trim();
+    }
+
+    public String getMkszd() {
+        return mkszd;
+    }
+
+    public void setMkszd(String mkszd) {
+        this.mkszd = mkszd == null ? null : mkszd.trim();
+    }
+
+    public String getTcsj() {
+        return tcsj;
+    }
+
+    public void setTcsj(String tcsj) {
+        this.tcsj = tcsj == null ? null : tcsj.trim();
+    }
+
+    public BigDecimal getSjnl() {
+        return sjnl;
+    }
+
+    public void setSjnl(BigDecimal sjnl) {
+        this.sjnl = sjnl;
+    }
+
+    public BigDecimal getHdnl() {
+        return hdnl;
+    }
+
+    public void setHdnl(BigDecimal hdnl) {
+        this.hdnl = hdnl;
+    }
+
+    public BigDecimal getTcnl() {
+        return tcnl;
+    }
+
+    public void setTcnl(BigDecimal tcnl) {
+        this.tcnl = tcnl;
+    }
+
+    public BigDecimal getYhdqdk() {
+        return yhdqdk;
+    }
+
+    public void setYhdqdk(BigDecimal yhdqdk) {
+        this.yhdqdk = yhdqdk;
+    }
+
+    public BigDecimal getYhcqdk() {
+        return yhcqdk;
+    }
+
+    public void setYhcqdk(BigDecimal yhcqdk) {
+        this.yhcqdk = yhcqdk;
+    }
+
+    public BigDecimal getFyhjrjgrze() {
+        return fyhjrjgrze;
+    }
+
+    public void setFyhjrjgrze(BigDecimal fyhjrjgrze) {
+        this.fyhjrjgrze = fyhjrjgrze;
+    }
+
+    public BigDecimal getQylrlc() {
+        return qylrlc;
+    }
+
+    public void setQylrlc(BigDecimal qylrlc) {
+        this.qylrlc = qylrlc;
+    }
+
+    public BigDecimal getQygb() {
+        return qygb;
+    }
+
+    public void setQygb(BigDecimal qygb) {
+        this.qygb = qygb;
+    }
+
+    public BigDecimal getQyzjrze() {
+        return qyzjrze;
+    }
+
+    public void setQyzjrze(BigDecimal qyzjrze) {
+        this.qyzjrze = qyzjrze;
+    }
+
+    public BigDecimal getQtrz() {
+        return qtrz;
+    }
+
+    public void setQtrz(BigDecimal qtrz) {
+        this.qtrz = qtrz;
+    }
+
+    public String getTclx() {
+        return tclx;
+    }
+
+    public void setTclx(String tclx) {
+        this.tclx = tclx == null ? null : tclx.trim();
+    }
+
+    public BigDecimal getJhtqty() {
+        return jhtqty;
+    }
+
+    public void setJhtqty(BigDecimal jhtqty) {
+        this.jhtqty = jhtqty;
+    }
+
+    public BigDecimal getJhyfjcht() {
+        return jhyfjcht;
+    }
+
+    public void setJhyfjcht(BigDecimal jhyfjcht) {
+        this.jhyfjcht = jhyfjcht;
+    }
+
+    public BigDecimal getJhnbaz() {
+        return jhnbaz;
+    }
+
+    public void setJhnbaz(BigDecimal jhnbaz) {
+        this.jhnbaz = jhnbaz;
+    }
+
+    public BigDecimal getQtjh() {
+        return qtjh;
+    }
+
+    public void setQtjh(BigDecimal qtjh) {
+        this.qtjh = qtjh;
+    }
+
+    public String getShzt() {
+        return shzt;
+    }
+
+    public void setShzt(String shzt) {
+        this.shzt = shzt == null ? null : shzt.trim();
+    }
+
+    public String getShsm() {
+        return shsm;
+    }
+
+    public void setShsm(String shsm) {
+        this.shsm = shsm == null ? null : shsm.trim();
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getMklb() {
+        return mklb;
+    }
+
+    public void setMklb(String mklb) {
+        this.mklb = mklb == null ? null : mklb.trim();
+    }
+}

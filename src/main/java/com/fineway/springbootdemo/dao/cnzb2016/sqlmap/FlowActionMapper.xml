@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.FlowActionMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.FlowAction">
+    <result column="FLOWACTIONID" jdbcType="VARCHAR" property="flowactionid" />
+    <result column="FLOWACTIONENDTIME" jdbcType="TIMESTAMP" property="flowactionendtime" />
+    <result column="FLOWACTIONORDERNUMBER" jdbcType="DECIMAL" property="flowactionordernumber" />
+    <result column="FLOWACTIONSTARTTIME" jdbcType="TIMESTAMP" property="flowactionstarttime" />
+    <result column="FLOWACTIONSTATUSID" jdbcType="VARCHAR" property="flowactionstatusid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.FlowAction">
+    insert into HJCN1.FLOWACTION (FLOWACTIONID, FLOWACTIONENDTIME, 
+      FLOWACTIONORDERNUMBER, FLOWACTIONSTARTTIME, 
+      FLOWACTIONSTATUSID)
+    values (#{flowactionid,jdbcType=VARCHAR}, #{flowactionendtime,jdbcType=TIMESTAMP}, 
+      #{flowactionordernumber,jdbcType=DECIMAL}, #{flowactionstarttime,jdbcType=TIMESTAMP}, 
+      #{flowactionstatusid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.FlowAction">
+    insert into HJCN1.FLOWACTION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="flowactionid != null">
+        FLOWACTIONID,
+      </if>
+      <if test="flowactionendtime != null">
+        FLOWACTIONENDTIME,
+      </if>
+      <if test="flowactionordernumber != null">
+        FLOWACTIONORDERNUMBER,
+      </if>
+      <if test="flowactionstarttime != null">
+        FLOWACTIONSTARTTIME,
+      </if>
+      <if test="flowactionstatusid != null">
+        FLOWACTIONSTATUSID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="flowactionid != null">
+        #{flowactionid,jdbcType=VARCHAR},
+      </if>
+      <if test="flowactionendtime != null">
+        #{flowactionendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowactionordernumber != null">
+        #{flowactionordernumber,jdbcType=DECIMAL},
+      </if>
+      <if test="flowactionstarttime != null">
+        #{flowactionstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flowactionstatusid != null">
+        #{flowactionstatusid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

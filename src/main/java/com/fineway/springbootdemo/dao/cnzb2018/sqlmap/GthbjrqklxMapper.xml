@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2018.mapper.GthbjrqklxMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2018.pojo.Gthbjrqklx">
+    <result column="GTHBJRQKLXID" jdbcType="VARCHAR" property="gthbjrqklxid" />
+    <result column="SJJRJGMC" jdbcType="VARCHAR" property="sjjrjgmc" />
+    <result column="SJJE" jdbcType="DECIMAL" property="sjje" />
+    <result column="QKMS" jdbcType="VARCHAR" property="qkms" />
+    <result column="SFXDFJRJGFY" jdbcType="VARCHAR" property="sfxdfjrjgfy" />
+    <result column="DFJRJGHFYJ" jdbcType="VARCHAR" property="dfjrjghfyj" />
+    <result column="QYSQ" jdbcType="VARCHAR" property="qysq" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="MODIFYTIME" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2018.pojo.Gthbjrqklx">
+    insert into CNZB2018.GTHBJRQKLX (GTHBJRQKLXID, SJJRJGMC, SJJE, 
+      QKMS, SFXDFJRJGFY, DFJRJGHFYJ, 
+      QYSQ, CREATETIME, MODIFYTIME, 
+      NAME, REPORTID)
+    values (#{gthbjrqklxid,jdbcType=VARCHAR}, #{sjjrjgmc,jdbcType=VARCHAR}, #{sjje,jdbcType=DECIMAL}, 
+      #{qkms,jdbcType=VARCHAR}, #{sfxdfjrjgfy,jdbcType=VARCHAR}, #{dfjrjghfyj,jdbcType=VARCHAR}, 
+      #{qysq,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{reportid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2018.pojo.Gthbjrqklx">
+    insert into CNZB2018.GTHBJRQKLX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gthbjrqklxid != null">
+        GTHBJRQKLXID,
+      </if>
+      <if test="sjjrjgmc != null">
+        SJJRJGMC,
+      </if>
+      <if test="sjje != null">
+        SJJE,
+      </if>
+      <if test="qkms != null">
+        QKMS,
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        SFXDFJRJGFY,
+      </if>
+      <if test="dfjrjghfyj != null">
+        DFJRJGHFYJ,
+      </if>
+      <if test="qysq != null">
+        QYSQ,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="reportid != null">
+        REPORTID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gthbjrqklxid != null">
+        #{gthbjrqklxid,jdbcType=VARCHAR},
+      </if>
+      <if test="sjjrjgmc != null">
+        #{sjjrjgmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjje != null">
+        #{sjje,jdbcType=DECIMAL},
+      </if>
+      <if test="qkms != null">
+        #{qkms,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        #{sfxdfjrjgfy,jdbcType=VARCHAR},
+      </if>
+      <if test="dfjrjghfyj != null">
+        #{dfjrjghfyj,jdbcType=VARCHAR},
+      </if>
+      <if test="qysq != null">
+        #{qysq,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null">
+        #{reportid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

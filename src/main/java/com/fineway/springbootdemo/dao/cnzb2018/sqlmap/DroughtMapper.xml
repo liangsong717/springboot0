@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2018.mapper.DroughtMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2018.pojo.Drought">
+    <id column="DROUGHTTEMPID" jdbcType="VARCHAR" property="droughttempid" />
+    <result column="DATE_START" jdbcType="TIMESTAMP" property="dateStart" />
+    <result column="DATE_STOP" jdbcType="TIMESTAMP" property="dateStop" />
+    <result column="PROV" jdbcType="VARCHAR" property="prov" />
+    <result column="DROUGHTNAME" jdbcType="VARCHAR" property="droughtname" />
+    <result column="NUM" jdbcType="INTEGER" property="num" />
+  </resultMap>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from  BUSINESSDATA.DROUGHTTEMP where DROUGHTTEMP.DROUGHTTEMPID=#{droughttempid,jdbcType=VARCHAR}
+  </select>
+</mapper>

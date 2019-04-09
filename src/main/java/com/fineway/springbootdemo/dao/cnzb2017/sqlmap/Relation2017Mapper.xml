@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2017.mapper.Relation2017Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.Relation2017">
+    <id column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+    <id column="EQUIPMENTID" jdbcType="VARCHAR" property="equipmentid" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    REPORTID, EQUIPMENTID, CREATETIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Relation2017Key" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CNZB.RELATION
+    where REPORTID = #{reportid,jdbcType=VARCHAR}
+      and EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </select>
+  <select id="getMoveData" resultMap="BaseResultMap">
+    select
+      t02.*
+    from equipment t01 left join relation t02 on t01.equipmentid=t02.equipmentid
+                       left join hjcnhistory t03 on t02.reportid=t03.historyreportid
+    where t03.historyreportid is not null
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Relation2017Key">
+    delete from CNZB.RELATION
+    where REPORTID = #{reportid,jdbcType=VARCHAR}
+      and EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Relation2017">
+    insert into CNZB.RELATION (REPORTID, EQUIPMENTID, CREATETIME
+      )
+    values (#{reportid,jdbcType=VARCHAR}, #{equipmentid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Relation2017">
+    insert into CNZB.RELATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportid != null">
+        REPORTID,
+      </if>
+      <if test="equipmentid != null">
+        EQUIPMENTID,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportid != null">
+        #{reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentid != null">
+        #{equipmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Relation2017">
+    update CNZB.RELATION
+    <set>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where REPORTID = #{reportid,jdbcType=VARCHAR}
+      and EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Relation2017">
+    update CNZB.RELATION
+    set CREATETIME = #{createtime,jdbcType=TIMESTAMP}
+    where REPORTID = #{reportid,jdbcType=VARCHAR}
+      and EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </update>
+</mapper>

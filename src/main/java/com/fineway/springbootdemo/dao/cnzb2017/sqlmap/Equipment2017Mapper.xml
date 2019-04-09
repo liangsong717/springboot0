@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2017.mapper.Equipment2017Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.Equipment2017">
+    <id column="EQUIPMENTID" jdbcType="VARCHAR" property="equipmentid" />
+    <result column="EQUIPMENTNAME" jdbcType="VARCHAR" property="equipmentname" />
+    <result column="SUM" jdbcType="DECIMAL" property="sum" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <resultMap id="ResultMap_JsonPath" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.EquipmentAndJsonPath">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="EQUIPMENTID" jdbcType="VARCHAR" property="equipmentid" />
+    <result column="EQUIPMENTNAME" jdbcType="VARCHAR" property="equipmentname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EQUIPMENTID, EQUIPMENTNAME, SUM, CREATETIME, TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CNZB.EQUIPMENT
+    where EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </select>
+  <select id="getJsonPath" resultMap="ResultMap_JsonPath">
+    select distinct t01.id,t01.path,t03.equipmentid,t03.equipmentname
+    from hjcnhistory t01 left join relation t02 on t01.historyreportid=t02.reportid
+      left join equipment t03 on t02.equipmentid=t03.equipmentid
+    where t03.equipmentid is not null
+  </select>
+  <select id="getMoveData" resultMap="BaseResultMap">
+    select
+      t01.*
+    from equipment t01 left join relation t02 on t01.equipmentid=t02.equipmentid
+      left join hjcnhistory t03 on t02.reportid=t03.historyreportid
+    where t03.historyreportid is not null
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CNZB.EQUIPMENT
+    where EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Equipment2017">
+    insert into CNZB.EQUIPMENT (EQUIPMENTID, EQUIPMENTNAME, SUM, 
+      CREATETIME, TYPE)
+    values (#{equipmentid,jdbcType=VARCHAR}, #{equipmentname,jdbcType=VARCHAR}, #{sum,jdbcType=DECIMAL}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Equipment2017">
+    insert into CNZB.EQUIPMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="equipmentid != null">
+        EQUIPMENTID,
+      </if>
+      <if test="equipmentname != null">
+        EQUIPMENTNAME,
+      </if>
+      <if test="sum != null">
+        SUM,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="equipmentid != null">
+        #{equipmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="equipmentname != null">
+        #{equipmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null">
+        #{sum,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Equipment2017">
+    update CNZB.EQUIPMENT
+    <set>
+      <if test="equipmentname != null">
+        EQUIPMENTNAME = #{equipmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="sum != null">
+        SUM = #{sum,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Equipment2017">
+    update CNZB.EQUIPMENT
+    set EQUIPMENTNAME = #{equipmentname,jdbcType=VARCHAR},
+      SUM = #{sum,jdbcType=DECIMAL},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=VARCHAR}
+    where EQUIPMENTID = #{equipmentid,jdbcType=VARCHAR}
+  </update>
+</mapper>

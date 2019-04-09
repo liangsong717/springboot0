@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.IndexItemMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.IndexItem">
+    <result column="INDEXITEMID" jdbcType="VARCHAR" property="indexitemid" />
+    <result column="INDEXITEMCODE" jdbcType="VARCHAR" property="indexitemcode" />
+    <result column="INDEXITEMNAME" jdbcType="VARCHAR" property="indexitemname" />
+    <result column="INDEXITEMORDERNUMBER" jdbcType="DECIMAL" property="indexitemordernumber" />
+    <result column="INDEXITEMUNIT" jdbcType="VARCHAR" property="indexitemunit" />
+    <result column="INDEXITEMVALIDITY" jdbcType="DECIMAL" property="indexitemvalidity" />
+    <result column="KEYINDEXITEM" jdbcType="DECIMAL" property="keyindexitem" />
+    <result column="MAININDEXITEM" jdbcType="DECIMAL" property="mainindexitem" />
+    <result column="RELATINGDISASTERKINDID" jdbcType="VARCHAR" property="relatingdisasterkindid" />
+    <result column="DATATYPEID" jdbcType="VARCHAR" property="datatypeid" />
+    <result column="PARENTID" jdbcType="VARCHAR" property="parentid" />
+    <result column="INDEXTYPEID" jdbcType="VARCHAR" property="indextypeid" />
+    <result column="INDEXITEMDESCRIPTION" jdbcType="VARCHAR" property="indexitemdescription" />
+    <result column="COUNTRYINDEXITEM" jdbcType="DECIMAL" property="countryindexitem" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.IndexItem">
+    insert into HJCN1.INDEXITEM (INDEXITEMID, INDEXITEMCODE, INDEXITEMNAME, 
+      INDEXITEMORDERNUMBER, INDEXITEMUNIT, INDEXITEMVALIDITY, 
+      KEYINDEXITEM, MAININDEXITEM, RELATINGDISASTERKINDID, 
+      DATATYPEID, PARENTID, INDEXTYPEID, 
+      INDEXITEMDESCRIPTION, COUNTRYINDEXITEM)
+    values (#{indexitemid,jdbcType=VARCHAR}, #{indexitemcode,jdbcType=VARCHAR}, #{indexitemname,jdbcType=VARCHAR}, 
+      #{indexitemordernumber,jdbcType=DECIMAL}, #{indexitemunit,jdbcType=VARCHAR}, #{indexitemvalidity,jdbcType=DECIMAL}, 
+      #{keyindexitem,jdbcType=DECIMAL}, #{mainindexitem,jdbcType=DECIMAL}, #{relatingdisasterkindid,jdbcType=VARCHAR}, 
+      #{datatypeid,jdbcType=VARCHAR}, #{parentid,jdbcType=VARCHAR}, #{indextypeid,jdbcType=VARCHAR}, 
+      #{indexitemdescription,jdbcType=VARCHAR}, #{countryindexitem,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.IndexItem">
+    insert into HJCN1.INDEXITEM
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="indexitemid != null">
+        INDEXITEMID,
+      </if>
+      <if test="indexitemcode != null">
+        INDEXITEMCODE,
+      </if>
+      <if test="indexitemname != null">
+        INDEXITEMNAME,
+      </if>
+      <if test="indexitemordernumber != null">
+        INDEXITEMORDERNUMBER,
+      </if>
+      <if test="indexitemunit != null">
+        INDEXITEMUNIT,
+      </if>
+      <if test="indexitemvalidity != null">
+        INDEXITEMVALIDITY,
+      </if>
+      <if test="keyindexitem != null">
+        KEYINDEXITEM,
+      </if>
+      <if test="mainindexitem != null">
+        MAININDEXITEM,
+      </if>
+      <if test="relatingdisasterkindid != null">
+        RELATINGDISASTERKINDID,
+      </if>
+      <if test="datatypeid != null">
+        DATATYPEID,
+      </if>
+      <if test="parentid != null">
+        PARENTID,
+      </if>
+      <if test="indextypeid != null">
+        INDEXTYPEID,
+      </if>
+      <if test="indexitemdescription != null">
+        INDEXITEMDESCRIPTION,
+      </if>
+      <if test="countryindexitem != null">
+        COUNTRYINDEXITEM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="indexitemid != null">
+        #{indexitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="indexitemcode != null">
+        #{indexitemcode,jdbcType=VARCHAR},
+      </if>
+      <if test="indexitemname != null">
+        #{indexitemname,jdbcType=VARCHAR},
+      </if>
+      <if test="indexitemordernumber != null">
+        #{indexitemordernumber,jdbcType=DECIMAL},
+      </if>
+      <if test="indexitemunit != null">
+        #{indexitemunit,jdbcType=VARCHAR},
+      </if>
+      <if test="indexitemvalidity != null">
+        #{indexitemvalidity,jdbcType=DECIMAL},
+      </if>
+      <if test="keyindexitem != null">
+        #{keyindexitem,jdbcType=DECIMAL},
+      </if>
+      <if test="mainindexitem != null">
+        #{mainindexitem,jdbcType=DECIMAL},
+      </if>
+      <if test="relatingdisasterkindid != null">
+        #{relatingdisasterkindid,jdbcType=VARCHAR},
+      </if>
+      <if test="datatypeid != null">
+        #{datatypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=VARCHAR},
+      </if>
+      <if test="indextypeid != null">
+        #{indextypeid,jdbcType=VARCHAR},
+      </if>
+      <if test="indexitemdescription != null">
+        #{indexitemdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="countryindexitem != null">
+        #{countryindexitem,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

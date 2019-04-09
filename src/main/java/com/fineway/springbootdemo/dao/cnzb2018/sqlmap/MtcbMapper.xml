@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2018.mapper.MtcbMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2018.pojo.Mtcb">
+    <id column="MTCBID" jdbcType="VARCHAR" property="mtcbid" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="REPORTTIME" jdbcType="VARCHAR" property="reporttime" />
+    <result column="ZZJGDM" jdbcType="VARCHAR" property="zzjgdm" />
+    <result column="XYDM" jdbcType="VARCHAR" property="xydm" />
+    <result column="TCMKMC" jdbcType="VARCHAR" property="tcmkmc" />
+    <result column="MKSZD" jdbcType="VARCHAR" property="mkszd" />
+    <result column="TCSJ" jdbcType="VARCHAR" property="tcsj" />
+    <result column="SJNL" jdbcType="DECIMAL" property="sjnl" />
+    <result column="HDNL" jdbcType="DECIMAL" property="hdnl" />
+    <result column="TCNL" jdbcType="DECIMAL" property="tcnl" />
+    <result column="YHDQDK" jdbcType="DECIMAL" property="yhdqdk" />
+    <result column="YHCQDK" jdbcType="DECIMAL" property="yhcqdk" />
+    <result column="FYHJRJGRZE" jdbcType="DECIMAL" property="fyhjrjgrze" />
+    <result column="QYLRLC" jdbcType="DECIMAL" property="qylrlc" />
+    <result column="QYGB" jdbcType="DECIMAL" property="qygb" />
+    <result column="QYZJRZE" jdbcType="DECIMAL" property="qyzjrze" />
+    <result column="QTRZ" jdbcType="DECIMAL" property="qtrz" />
+    <result column="TCLX" jdbcType="VARCHAR" property="tclx" />
+    <result column="JHTQTY" jdbcType="DECIMAL" property="jhtqty" />
+    <result column="JHYFJCHT" jdbcType="DECIMAL" property="jhyfjcht" />
+    <result column="JHNBAZ" jdbcType="DECIMAL" property="jhnbaz" />
+    <result column="QTJH" jdbcType="DECIMAL" property="qtjh" />
+    <result column="SHZT" jdbcType="VARCHAR" property="shzt" />
+    <result column="SHSM" jdbcType="VARCHAR" property="shsm" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="MKLB" jdbcType="VARCHAR" property="mklb" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MTCBID, CIVILREGIONALISMID, REPORTTIME, ZZJGDM, XYDM, TCMKMC, MKSZD, TCSJ, SJNL,
+    HDNL, TCNL, YHDQDK, YHCQDK, FYHJRJGRZE, QYLRLC, QYGB, QYZJRZE, QTRZ, TCLX, JHTQTY, 
+    JHYFJCHT, JHNBAZ, QTJH, SHZT, SHSM, CREATETIME, MKLB
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CNZB2018.MTCB
+    where MTCBID = #{mtcbid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CNZB2018.MTCB
+    where MTCBID = #{mtcbid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2018.pojo.Mtcb">
+    insert into CNZB2018.MTCB (MTCBID, CIVILREGIONALISMID, REPORTTIME,
+      ZZJGDM, XYDM, TCMKMC, 
+      MKSZD, TCSJ, SJNL, 
+      HDNL, TCNL, YHDQDK, 
+      YHCQDK, FYHJRJGRZE, QYLRLC, 
+      QYGB, QYZJRZE, QTRZ, 
+      TCLX, JHTQTY, JHYFJCHT, 
+      JHNBAZ, QTJH, SHZT, 
+      SHSM, CREATETIME, MKLB
+      )
+    values (#{mtcbid,jdbcType=VARCHAR}, #{civilregionalismid,jdbcType=VARCHAR}, #{reporttime,jdbcType=VARCHAR}, 
+      #{zzjgdm,jdbcType=VARCHAR}, #{xydm,jdbcType=VARCHAR}, #{tcmkmc,jdbcType=VARCHAR}, 
+      #{mkszd,jdbcType=VARCHAR}, #{tcsj,jdbcType=VARCHAR}, #{sjnl,jdbcType=DECIMAL}, 
+      #{hdnl,jdbcType=DECIMAL}, #{tcnl,jdbcType=DECIMAL}, #{yhdqdk,jdbcType=DECIMAL}, 
+      #{yhcqdk,jdbcType=DECIMAL}, #{fyhjrjgrze,jdbcType=DECIMAL}, #{qylrlc,jdbcType=DECIMAL}, 
+      #{qygb,jdbcType=DECIMAL}, #{qyzjrze,jdbcType=DECIMAL}, #{qtrz,jdbcType=DECIMAL}, 
+      #{tclx,jdbcType=VARCHAR}, #{jhtqty,jdbcType=DECIMAL}, #{jhyfjcht,jdbcType=DECIMAL}, 
+      #{jhnbaz,jdbcType=DECIMAL}, #{qtjh,jdbcType=DECIMAL}, #{shzt,jdbcType=VARCHAR}, 
+      #{shsm,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{mklb,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2018.pojo.Mtcb">
+    insert into CNZB2018.MTCB
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mtcbid != null">
+        MTCBID,
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME,
+      </if>
+      <if test="zzjgdm != null">
+        ZZJGDM,
+      </if>
+      <if test="xydm != null">
+        XYDM,
+      </if>
+      <if test="tcmkmc != null">
+        TCMKMC,
+      </if>
+      <if test="mkszd != null">
+        MKSZD,
+      </if>
+      <if test="tcsj != null">
+        TCSJ,
+      </if>
+      <if test="sjnl != null">
+        SJNL,
+      </if>
+      <if test="hdnl != null">
+        HDNL,
+      </if>
+      <if test="tcnl != null">
+        TCNL,
+      </if>
+      <if test="yhdqdk != null">
+        YHDQDK,
+      </if>
+      <if test="yhcqdk != null">
+        YHCQDK,
+      </if>
+      <if test="fyhjrjgrze != null">
+        FYHJRJGRZE,
+      </if>
+      <if test="qylrlc != null">
+        QYLRLC,
+      </if>
+      <if test="qygb != null">
+        QYGB,
+      </if>
+      <if test="qyzjrze != null">
+        QYZJRZE,
+      </if>
+      <if test="qtrz != null">
+        QTRZ,
+      </if>
+      <if test="tclx != null">
+        TCLX,
+      </if>
+      <if test="jhtqty != null">
+        JHTQTY,
+      </if>
+      <if test="jhyfjcht != null">
+        JHYFJCHT,
+      </if>
+      <if test="jhnbaz != null">
+        JHNBAZ,
+      </if>
+      <if test="qtjh != null">
+        QTJH,
+      </if>
+      <if test="shzt != null">
+        SHZT,
+      </if>
+      <if test="shsm != null">
+        SHSM,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="mklb != null">
+        MKLB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mtcbid != null">
+        #{mtcbid,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null">
+        #{reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgdm != null">
+        #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="xydm != null">
+        #{xydm,jdbcType=VARCHAR},
+      </if>
+      <if test="tcmkmc != null">
+        #{tcmkmc,jdbcType=VARCHAR},
+      </if>
+      <if test="mkszd != null">
+        #{mkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="tcsj != null">
+        #{tcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjnl != null">
+        #{sjnl,jdbcType=DECIMAL},
+      </if>
+      <if test="hdnl != null">
+        #{hdnl,jdbcType=DECIMAL},
+      </if>
+      <if test="tcnl != null">
+        #{tcnl,jdbcType=DECIMAL},
+      </if>
+      <if test="yhdqdk != null">
+        #{yhdqdk,jdbcType=DECIMAL},
+      </if>
+      <if test="yhcqdk != null">
+        #{yhcqdk,jdbcType=DECIMAL},
+      </if>
+      <if test="fyhjrjgrze != null">
+        #{fyhjrjgrze,jdbcType=DECIMAL},
+      </if>
+      <if test="qylrlc != null">
+        #{qylrlc,jdbcType=DECIMAL},
+      </if>
+      <if test="qygb != null">
+        #{qygb,jdbcType=DECIMAL},
+      </if>
+      <if test="qyzjrze != null">
+        #{qyzjrze,jdbcType=DECIMAL},
+      </if>
+      <if test="qtrz != null">
+        #{qtrz,jdbcType=DECIMAL},
+      </if>
+      <if test="tclx != null">
+        #{tclx,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtqty != null">
+        #{jhtqty,jdbcType=DECIMAL},
+      </if>
+      <if test="jhyfjcht != null">
+        #{jhyfjcht,jdbcType=DECIMAL},
+      </if>
+      <if test="jhnbaz != null">
+        #{jhnbaz,jdbcType=DECIMAL},
+      </if>
+      <if test="qtjh != null">
+        #{qtjh,jdbcType=DECIMAL},
+      </if>
+      <if test="shzt != null">
+        #{shzt,jdbcType=VARCHAR},
+      </if>
+      <if test="shsm != null">
+        #{shsm,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mklb != null">
+        #{mklb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb2018.pojo.Mtcb">
+    update CNZB2018.MTCB
+    <set>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttime != null">
+        REPORTTIME = #{reporttime,jdbcType=VARCHAR},
+      </if>
+      <if test="zzjgdm != null">
+        ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="xydm != null">
+        XYDM = #{xydm,jdbcType=VARCHAR},
+      </if>
+      <if test="tcmkmc != null">
+        TCMKMC = #{tcmkmc,jdbcType=VARCHAR},
+      </if>
+      <if test="mkszd != null">
+        MKSZD = #{mkszd,jdbcType=VARCHAR},
+      </if>
+      <if test="tcsj != null">
+        TCSJ = #{tcsj,jdbcType=VARCHAR},
+      </if>
+      <if test="sjnl != null">
+        SJNL = #{sjnl,jdbcType=DECIMAL},
+      </if>
+      <if test="hdnl != null">
+        HDNL = #{hdnl,jdbcType=DECIMAL},
+      </if>
+      <if test="tcnl != null">
+        TCNL = #{tcnl,jdbcType=DECIMAL},
+      </if>
+      <if test="yhdqdk != null">
+        YHDQDK = #{yhdqdk,jdbcType=DECIMAL},
+      </if>
+      <if test="yhcqdk != null">
+        YHCQDK = #{yhcqdk,jdbcType=DECIMAL},
+      </if>
+      <if test="fyhjrjgrze != null">
+        FYHJRJGRZE = #{fyhjrjgrze,jdbcType=DECIMAL},
+      </if>
+      <if test="qylrlc != null">
+        QYLRLC = #{qylrlc,jdbcType=DECIMAL},
+      </if>
+      <if test="qygb != null">
+        QYGB = #{qygb,jdbcType=DECIMAL},
+      </if>
+      <if test="qyzjrze != null">
+        QYZJRZE = #{qyzjrze,jdbcType=DECIMAL},
+      </if>
+      <if test="qtrz != null">
+        QTRZ = #{qtrz,jdbcType=DECIMAL},
+      </if>
+      <if test="tclx != null">
+        TCLX = #{tclx,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtqty != null">
+        JHTQTY = #{jhtqty,jdbcType=DECIMAL},
+      </if>
+      <if test="jhyfjcht != null">
+        JHYFJCHT = #{jhyfjcht,jdbcType=DECIMAL},
+      </if>
+      <if test="jhnbaz != null">
+        JHNBAZ = #{jhnbaz,jdbcType=DECIMAL},
+      </if>
+      <if test="qtjh != null">
+        QTJH = #{qtjh,jdbcType=DECIMAL},
+      </if>
+      <if test="shzt != null">
+        SHZT = #{shzt,jdbcType=VARCHAR},
+      </if>
+      <if test="shsm != null">
+        SHSM = #{shsm,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mklb != null">
+        MKLB = #{mklb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MTCBID = #{mtcbid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2018.pojo.Mtcb">
+    update CNZB2018.MTCB
+    set CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR},
+      REPORTTIME = #{reporttime,jdbcType=VARCHAR},
+      ZZJGDM = #{zzjgdm,jdbcType=VARCHAR},
+      XYDM = #{xydm,jdbcType=VARCHAR},
+      TCMKMC = #{tcmkmc,jdbcType=VARCHAR},
+      MKSZD = #{mkszd,jdbcType=VARCHAR},
+      TCSJ = #{tcsj,jdbcType=VARCHAR},
+      SJNL = #{sjnl,jdbcType=DECIMAL},
+      HDNL = #{hdnl,jdbcType=DECIMAL},
+      TCNL = #{tcnl,jdbcType=DECIMAL},
+      YHDQDK = #{yhdqdk,jdbcType=DECIMAL},
+      YHCQDK = #{yhcqdk,jdbcType=DECIMAL},
+      FYHJRJGRZE = #{fyhjrjgrze,jdbcType=DECIMAL},
+      QYLRLC = #{qylrlc,jdbcType=DECIMAL},
+      QYGB = #{qygb,jdbcType=DECIMAL},
+      QYZJRZE = #{qyzjrze,jdbcType=DECIMAL},
+      QTRZ = #{qtrz,jdbcType=DECIMAL},
+      TCLX = #{tclx,jdbcType=VARCHAR},
+      JHTQTY = #{jhtqty,jdbcType=DECIMAL},
+      JHYFJCHT = #{jhyfjcht,jdbcType=DECIMAL},
+      JHNBAZ = #{jhnbaz,jdbcType=DECIMAL},
+      QTJH = #{qtjh,jdbcType=DECIMAL},
+      SHZT = #{shzt,jdbcType=VARCHAR},
+      SHSM = #{shsm,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      MKLB = #{mklb,jdbcType=VARCHAR}
+    where MTCBID = #{mtcbid,jdbcType=VARCHAR}
+  </update>
+</mapper>

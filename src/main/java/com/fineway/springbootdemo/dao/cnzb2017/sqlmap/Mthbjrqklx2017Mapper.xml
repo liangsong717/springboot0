@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2017.mapper.Mthbjrqklx2017Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthbjrqklx2017">
+    <id column="MTHBJRQKLXID" jdbcType="VARCHAR" property="mthbjrqklxid" />
+    <result column="SJJRJGMC" jdbcType="VARCHAR" property="sjjrjgmc" />
+    <result column="SJJE" jdbcType="DECIMAL" property="sjje" />
+    <result column="QKMS" jdbcType="VARCHAR" property="qkms" />
+    <result column="SFXDFJRJGFY" jdbcType="VARCHAR" property="sfxdfjrjgfy" />
+    <result column="QYSQ" jdbcType="VARCHAR" property="qysq" />
+    <result column="DWCPNHZB" jdbcType="DECIMAL" property="dwcpnhzb" />
+    <result column="ZCCZQK" jdbcType="VARCHAR" property="zcczqk" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="MODIFYTIME" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="DFJRJGHFYJ" jdbcType="VARCHAR" property="dfjrjghfyj" />
+    <result column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MTHBJRQKLXID, SJJRJGMC, SJJE, QKMS, SFXDFJRJGFY, QYSQ, DWCPNHZB, ZCCZQK, CREATETIME, 
+    MODIFYTIME, DFJRJGHFYJ, REPORTID, NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CNZB.MTHBJRQKLX
+    where MTHBJRQKLXID = #{mthbjrqklxid,jdbcType=VARCHAR}
+  </select>
+  <select id="getMoveDatas" resultMap="BaseResultMap">
+    select * from mthbjrqklx t3
+    where t3.reportid in
+          ( select t2.mthbid from hjcnhistory t1 left join mthb t2 on t1.historyreportid=t2.mthbid
+            where t1.bblx='3' and t1.qylx='2' and t1.state='4' and t2.mthbid is not null)
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CNZB.MTHBJRQKLX
+    where MTHBJRQKLXID = #{mthbjrqklxid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthbjrqklx2017">
+    insert into CNZB.MTHBJRQKLX (MTHBJRQKLXID, SJJRJGMC, SJJE, 
+      QKMS, SFXDFJRJGFY, QYSQ, 
+      DWCPNHZB, ZCCZQK, CREATETIME, 
+      MODIFYTIME, DFJRJGHFYJ, REPORTID, 
+      NAME)
+    values (#{mthbjrqklxid,jdbcType=VARCHAR}, #{sjjrjgmc,jdbcType=VARCHAR}, #{sjje,jdbcType=DECIMAL}, 
+      #{qkms,jdbcType=VARCHAR}, #{sfxdfjrjgfy,jdbcType=VARCHAR}, #{qysq,jdbcType=VARCHAR}, 
+      #{dwcpnhzb,jdbcType=DECIMAL}, #{zcczqk,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{modifytime,jdbcType=TIMESTAMP}, #{dfjrjghfyj,jdbcType=VARCHAR}, #{reportid,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthbjrqklx2017">
+    insert into CNZB.MTHBJRQKLX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mthbjrqklxid != null">
+        MTHBJRQKLXID,
+      </if>
+      <if test="sjjrjgmc != null">
+        SJJRJGMC,
+      </if>
+      <if test="sjje != null">
+        SJJE,
+      </if>
+      <if test="qkms != null">
+        QKMS,
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        SFXDFJRJGFY,
+      </if>
+      <if test="qysq != null">
+        QYSQ,
+      </if>
+      <if test="dwcpnhzb != null">
+        DWCPNHZB,
+      </if>
+      <if test="zcczqk != null">
+        ZCCZQK,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME,
+      </if>
+      <if test="dfjrjghfyj != null">
+        DFJRJGHFYJ,
+      </if>
+      <if test="reportid != null">
+        REPORTID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mthbjrqklxid != null">
+        #{mthbjrqklxid,jdbcType=VARCHAR},
+      </if>
+      <if test="sjjrjgmc != null">
+        #{sjjrjgmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjje != null">
+        #{sjje,jdbcType=DECIMAL},
+      </if>
+      <if test="qkms != null">
+        #{qkms,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        #{sfxdfjrjgfy,jdbcType=VARCHAR},
+      </if>
+      <if test="qysq != null">
+        #{qysq,jdbcType=VARCHAR},
+      </if>
+      <if test="dwcpnhzb != null">
+        #{dwcpnhzb,jdbcType=DECIMAL},
+      </if>
+      <if test="zcczqk != null">
+        #{zcczqk,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dfjrjghfyj != null">
+        #{dfjrjghfyj,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null">
+        #{reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthbjrqklx2017">
+    update CNZB.MTHBJRQKLX
+    <set>
+      <if test="sjjrjgmc != null">
+        SJJRJGMC = #{sjjrjgmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjje != null">
+        SJJE = #{sjje,jdbcType=DECIMAL},
+      </if>
+      <if test="qkms != null">
+        QKMS = #{qkms,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        SFXDFJRJGFY = #{sfxdfjrjgfy,jdbcType=VARCHAR},
+      </if>
+      <if test="qysq != null">
+        QYSQ = #{qysq,jdbcType=VARCHAR},
+      </if>
+      <if test="dwcpnhzb != null">
+        DWCPNHZB = #{dwcpnhzb,jdbcType=DECIMAL},
+      </if>
+      <if test="zcczqk != null">
+        ZCCZQK = #{zcczqk,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dfjrjghfyj != null">
+        DFJRJGHFYJ = #{dfjrjghfyj,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null">
+        REPORTID = #{reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MTHBJRQKLXID = #{mthbjrqklxid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Mthbjrqklx2017">
+    update CNZB.MTHBJRQKLX
+    set SJJRJGMC = #{sjjrjgmc,jdbcType=VARCHAR},
+      SJJE = #{sjje,jdbcType=DECIMAL},
+      QKMS = #{qkms,jdbcType=VARCHAR},
+      SFXDFJRJGFY = #{sfxdfjrjgfy,jdbcType=VARCHAR},
+      QYSQ = #{qysq,jdbcType=VARCHAR},
+      DWCPNHZB = #{dwcpnhzb,jdbcType=DECIMAL},
+      ZCCZQK = #{zcczqk,jdbcType=VARCHAR},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+      DFJRJGHFYJ = #{dfjrjghfyj,jdbcType=VARCHAR},
+      REPORTID = #{reportid,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR}
+    where MTHBJRQKLXID = #{mthbjrqklxid,jdbcType=VARCHAR}
+  </update>
+</mapper>

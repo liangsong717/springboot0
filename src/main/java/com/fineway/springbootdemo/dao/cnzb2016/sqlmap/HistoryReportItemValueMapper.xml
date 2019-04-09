@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.HistoryReportItemValueMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.HistoryReportItemValue">
+    <result column="REPORTITEMVALUEID" jdbcType="VARCHAR" property="reportitemvalueid" />
+    <result column="REPORTITEMVALUE" jdbcType="VARCHAR" property="reportitemvalue" />
+    <result column="INDEXITEMID" jdbcType="VARCHAR" property="indexitemid" />
+    <result column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+    <result column="INSERTDATETIME" jdbcType="TIMESTAMP" property="insertdatetime" />
+  </resultMap>
+  <resultMap id="ResultMap_ReportMsg" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.ReportMsg">
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="CIVILREGIONALISMNAME" jdbcType="VARCHAR" property="civilregionalismname" />
+    <result column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+    <result column="PARENTINDEXCODE" jdbcType="VARCHAR" property="parentindexcode" />
+    <result column="PARENTINDEXNAME" jdbcType="VARCHAR" property="parentindexname" />
+    <result column="INDEXITEMCODE" jdbcType="VARCHAR" property="indexitemcode" />
+    <result column="INDEXITEMNAME" jdbcType="VARCHAR" property="indexitemname" />
+    <result column="REPORTITEMVALUE" jdbcType="VARCHAR" property="reportitemvalue" />
+  </resultMap>
+  <resultMap id="ResultMap_ReportDatas" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.ReportDatas">
+      <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+      <result column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+      <result column="REPORTTIME" jdbcType="TIMESTAMP" property="reporttime" />
+      <result column="COUNT" jdbcType="VARCHAR" property="count" />
+      <result column="CODES" jdbcType="VARCHAR" property="codes" />
+      <result column="NAMES" jdbcType="VARCHAR" property="names" />
+      <result column="DATAS" jdbcType="VARCHAR" property="datas" />
+  </resultMap>
+  <select id="searchReportMsg" parameterType="java.lang.String" resultMap="ResultMap_ReportMsg">
+    select t06.civilregionalismid,t06.civilregionalismname,t01.reportid,t03.indexitemcode,t03.indexitemname,t02.indexitemcode,t02.indexitemname,t01.reportitemvalue
+    from historyreportitemvalue t01
+           left join indexitem t02 on t01.indexitemid=t02.indexitemid
+           left join indexitem t03 on t02.parentid=t03.indexitemid
+           left join historyreport t04 on t01.reportid=t04.reportid
+           left join creditionrelation t05 on t04.creditionrelationid=t05.creditionrelationid
+           left join civilregionalism t06 on t05.civilregionalismid=t06.civilregionalismid
+    where t01.reportid in (select t02.reportid
+                           from hjcn1.historyreport t02
+                                  left outer join hjcn1.actionlist t03 on t03.actionlistid = t02.actionlistid
+                                  left outer join hjcn1.reportstage t031 on t031.reportstageid = t03.reportstageid
+                                  left outer join hjcn1.flowaction t04 on t02.flowactionid = t04.flowactionid
+                                  left outer join hjcn1.flowactionstatus t041 on t04.flowactionstatusid = t041.flowactionstatusid
+                                  left outer join hjcn1.disaster t05 on t02.disasterid = t05.disasterid
+                                  left outer join hjcn1.creditionrelation t051 on t051.creditionrelationid = t05.creditionrelationid
+                                  left outer join hjcn1.civilregionalism t052 on t051.civilregionalismid = t052.civilregionalismid
+                                  left outer join hjcn1.civilregionalismlevel t053 on t053.civilregionalismlevelid = t052.civilregionalismlevelid
+                                  left outer join hjcn1.civilregionalism t054 on t052.parentid=t054.civilregionalismid
+                           where 1=1
+                             and t02.actionlistid is not null
+                             and t02.flowactionid is not null
+                             and t054.parentid is not null
+                             and t041.FLOWACTIONSTATUSID = &apos;11113&apos;
+                             <if test="reportType!=null">
+                               and t031.reportstageid=#{reportType,jdbcType=VARCHAR}
+                             </if>)
+      <if test="indexName!=null">
+        and t02.indexitemname = #{indexName,jdbcType=VARCHAR}
+      </if>
+      <if test="civiId!=null">
+        and t06.civilregionalismid=#{civiId,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <select id="searchReportDatas" parameterType="java.lang.String" resultMap="ResultMap_ReportDatas">
+    select
+      t06.civilregionalismid,t04.reportid,t04.reporttime,
+           count(*) as count,wm_concat(t02.indexitemcode) as codes,wm_concat(t02.indexitemname) as names,
+      wm_concat(replace(t01.reportitemvalue,&apos;,&apos;,&apos;，&apos;)) as datas
+    from historyreportitemvalue t01
+           left join indexitem t02 on t01.indexitemid=t02.indexitemid
+           left join indexitem t03 on t02.parentid=t03.indexitemid
+           left join historyreport t04 on t01.reportid=t04.reportid
+           left join creditionrelation t05 on t04.creditionrelationid=t05.creditionrelationid
+           left join civilregionalism t06 on t05.civilregionalismid=t06.civilregionalismid
+    where 1=1
+      and t01.reportitemvalue is not null
+      and t01.reportid in (select t02.reportid
+                           from hjcn1.historyreport t02
+                                  left outer join hjcn1.actionlist t03 on t03.actionlistid = t02.actionlistid
+                                  left outer join hjcn1.reportstage t031 on t031.reportstageid = t03.reportstageid
+                                  left outer join hjcn1.flowaction t04 on t02.flowactionid = t04.flowactionid
+                                  left outer join hjcn1.flowactionstatus t041 on t04.flowactionstatusid = t041.flowactionstatusid
+                                  left outer join hjcn1.disaster t05 on t02.disasterid = t05.disasterid
+                                  left outer join hjcn1.creditionrelation t051 on t051.creditionrelationid = t05.creditionrelationid
+                                  left outer join hjcn1.civilregionalism t052 on t051.civilregionalismid = t052.civilregionalismid
+                                  left outer join hjcn1.civilregionalismlevel t053 on t053.civilregionalismlevelid = t052.civilregionalismlevelid
+                                  left outer join hjcn1.civilregionalism t054 on t052.parentid=t054.civilregionalismid
+                           where 1=1
+                             and t02.actionlistid is not null
+                             and t02.flowactionid is not null
+                             and t054.parentid is not null
+                             and t041.FLOWACTIONSTATUSID = &apos;11113&apos;
+                             <if test="companyType!=null">
+                               and t05.disasterkindid=#{companyType,jdbcType=VARCHAR}
+                             </if>
+                             <if test="reportType!=null">
+                               and t031.reportstageid=#{reportType,jdbcType=VARCHAR}
+                             </if>)
+      <if test="civiId!=null">
+        and t06.civilregionalismid=#{civiId,jdbcType=VARCHAR}
+      </if>
+    group by t04.reportid,t04.reporttime,t06.civilregionalismid
+  </select>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.HistoryReportItemValue">
+    insert into HJCN1.HISTORYREPORTITEMVALUE (REPORTITEMVALUEID, REPORTITEMVALUE, 
+      INDEXITEMID, reportid, INSERTDATETIME
+      )
+    values (#{reportitemvalueid,jdbcType=VARCHAR}, #{reportitemvalue,jdbcType=VARCHAR}, 
+      #{indexitemid,jdbcType=VARCHAR}, #{reportid,jdbcType=VARCHAR}, #{insertdatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.HistoryReportItemValue">
+    insert into HJCN1.HISTORYREPORTITEMVALUE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportitemvalueid != null">
+        REPORTITEMVALUEID,
+      </if>
+      <if test="reportitemvalue != null">
+        REPORTITEMVALUE,
+      </if>
+      <if test="indexitemid != null">
+        INDEXITEMID,
+      </if>
+      <if test="reportid != null">
+        reportid,
+      </if>
+      <if test="insertdatetime != null">
+        INSERTDATETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportitemvalueid != null">
+        #{reportitemvalueid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportitemvalue != null">
+        #{reportitemvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="indexitemid != null">
+        #{indexitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null">
+        #{reportid,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdatetime != null">
+        #{insertdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

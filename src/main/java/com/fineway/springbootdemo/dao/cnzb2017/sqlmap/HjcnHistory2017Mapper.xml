@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2017.mapper.HjcnHistory2017Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.HjcnHistory2017">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BBLX" jdbcType="DECIMAL" property="bblx" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="HISTORYREPORTID" jdbcType="VARCHAR" property="historyreportid" />
+    <result column="ISVALIDE" jdbcType="VARCHAR" property="isvalide" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="QYLX" jdbcType="DECIMAL" property="qylx" />
+    <result column="QYMC" jdbcType="VARCHAR" property="qymc" />
+    <result column="REGISTERDATE" jdbcType="VARCHAR" property="registerdate" />
+    <result column="REJETMESSAGE" jdbcType="VARCHAR" property="rejetmessage" />
+    <result column="REPORTDATE" jdbcType="VARCHAR" property="reportdate" />
+    <result column="STATE" jdbcType="DECIMAL" property="state" />
+    <result column="UPDATEDATE" jdbcType="VARCHAR" property="updatedate" />
+  </resultMap>
+  <resultMap id="ResultMapWithCiviName" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.HjcnHistoryWithCiviName2017">
+    <result column="CIVILREGIONALISMNAME" jdbcType="VARCHAR" property="civilregionalismname"/>
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BBLX" jdbcType="DECIMAL" property="bblx" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="HISTORYREPORTID" jdbcType="VARCHAR" property="historyreportid" />
+    <result column="ISVALIDE" jdbcType="VARCHAR" property="isvalide" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="QYLX" jdbcType="DECIMAL" property="qylx" />
+    <result column="QYMC" jdbcType="VARCHAR" property="qymc" />
+    <result column="REGISTERDATE" jdbcType="VARCHAR" property="registerdate" />
+    <result column="REJETMESSAGE" jdbcType="VARCHAR" property="rejetmessage" />
+    <result column="REPORTDATE" jdbcType="VARCHAR" property="reportdate" />
+    <result column="STATE" jdbcType="DECIMAL" property="state" />
+    <result column="UPDATEDATE" jdbcType="VARCHAR" property="updatedate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BBLX, CIVILREGIONALISMID, HISTORYREPORTID, ISVALIDE, PATH, QYLX, QYMC, REGISTERDATE, 
+    REJETMESSAGE, REPORTDATE, STATE, UPDATEDATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CNZB.HJCNHISTORY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="showErrorDatas" resultMap="BaseResultMap">
+    select * from hjcnhistory t01 where
+      (select count(*) from hjcnhistory
+        where id!=t01.id and t01.civilregionalismid = civilregionalismid
+          and t01.reportdate = reportdate
+          and t01.bblx = bblx
+          and t01.registerdate = registerdate
+          and t01.isvalide = isvalide
+          and t01.state = state)&gt;0
+  </select>
+  <select id="getErrorCivis" resultMap="BaseResultMap">
+    select
+      --*
+      distinct bblx,civilregionalismid,reportdate
+    from hjcnhistory
+      where bblx||civilregionalismid||trim(reportdate) in
+                           (select
+                              --*
+                              distinct bblx||civilregionalismid||trim(reportdate)
+                            from
+                              (select row_number () over (partition by civilregionalismid,trim(reportdate),bblx order by registerdate desc) rn,hjcnhistory.* from hjcnhistory where hjcnhistory.isvalide='01')
+                            where rn &gt; 1 and civilregionalismid is not null)
+                       and isvalide=&apos;01&apos;
+  </select>
+  <select id="selectByCiviAndBblxAndReportdate" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.HjcnHistory2017" resultMap="BaseResultMap">
+    select * from hjcnhistory where isvalide=&apos;01&apos;
+                                   and civilregionalismid=#{civilregionalismid,jdbcType=VARCHAR}
+                                and bblx=#{bblx,jdbcType=VARCHAR}
+                                <choose>
+                                  <when test="reportdate==null">
+                                    and reportdate is null
+                                  </when>
+                                  <otherwise>
+                                    and reportdate=#{reportdate,jdbcType=VARCHAR}
+                                  </otherwise>
+                                </choose>
+    order by civilregionalismid,bblx,trim(reportdate),registerdate desc,state desc
+  </select>
+  <select id="selectLeftNullmtyb" resultMap="BaseResultMap">
+    select * from
+                  hjcnhistory t01 left join mtyb t02 on t01.historyreportid=t02.mtybid
+    where t01.civilregionalismid is not null
+      and t01.bblx=&apos;2&apos;
+      and t01.state=&apos;4&apos;
+      and t01.qylx=&apos;2&apos;
+      and t02.mtybid is null
+  </select>
+  <select id="selfDefinedSQL" resultMap="BaseResultMap">
+    ${sql}
+  </select>
+  <select id="getMoveDatas" resultMap="BaseResultMap">
+    select * from hjcnhistory where civilregionalismid is not null
+  </select>
+  <select id="getDatasWithNullQymc" resultMap="ResultMapWithCiviName">
+    select t02.civilregionalismname,t01.* from hjcnhistory t01 left join civilregionalism t02 on t01.civilregionalismid=t02.civilregionalismid  where isvalide=&apos;01&apos; and qymc=&apos;null&apos; and t02.civilregionalismid is not null
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CNZB.HJCNHISTORY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.HjcnHistory2017">
+    insert into CNZB.HJCNHISTORY (ID, BBLX, CIVILREGIONALISMID, 
+      HISTORYREPORTID, ISVALIDE, PATH, 
+      QYLX, QYMC, REGISTERDATE, 
+      REJETMESSAGE, REPORTDATE, STATE, 
+      UPDATEDATE)
+    values (#{id,jdbcType=VARCHAR}, #{bblx,jdbcType=DECIMAL}, #{civilregionalismid,jdbcType=VARCHAR}, 
+      #{historyreportid,jdbcType=VARCHAR}, #{isvalide,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, 
+      #{qylx,jdbcType=DECIMAL}, #{qymc,jdbcType=VARCHAR}, #{registerdate,jdbcType=VARCHAR}, 
+      #{rejetmessage,jdbcType=VARCHAR}, #{reportdate,jdbcType=VARCHAR}, #{state,jdbcType=DECIMAL}, 
+      #{updatedate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.HjcnHistory2017">
+    insert into CNZB.HJCNHISTORY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="bblx != null">
+        BBLX,
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+      <if test="historyreportid != null">
+        HISTORYREPORTID,
+      </if>
+      <if test="isvalide != null">
+        ISVALIDE,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="qylx != null">
+        QYLX,
+      </if>
+      <if test="qymc != null">
+        QYMC,
+      </if>
+      <if test="registerdate != null">
+        REGISTERDATE,
+      </if>
+      <if test="rejetmessage != null">
+        REJETMESSAGE,
+      </if>
+      <if test="reportdate != null">
+        REPORTDATE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bblx != null">
+        #{bblx,jdbcType=DECIMAL},
+      </if>
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="historyreportid != null">
+        #{historyreportid,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalide != null">
+        #{isvalide,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="qylx != null">
+        #{qylx,jdbcType=DECIMAL},
+      </if>
+      <if test="qymc != null">
+        #{qymc,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        #{registerdate,jdbcType=VARCHAR},
+      </if>
+      <if test="rejetmessage != null">
+        #{rejetmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="reportdate != null">
+        #{reportdate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="updatedate != null">
+        #{updatedate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.HjcnHistory2017">
+    update CNZB.HJCNHISTORY
+    <set>
+      <if test="bblx != null">
+        BBLX = #{bblx,jdbcType=DECIMAL},
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="historyreportid != null">
+        HISTORYREPORTID = #{historyreportid,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalide != null">
+        ISVALIDE = #{isvalide,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="qylx != null">
+        QYLX = #{qylx,jdbcType=DECIMAL},
+      </if>
+      <if test="qymc != null">
+        QYMC = #{qymc,jdbcType=VARCHAR},
+      </if>
+      <if test="registerdate != null">
+        REGISTERDATE = #{registerdate,jdbcType=VARCHAR},
+      </if>
+      <if test="rejetmessage != null">
+        REJETMESSAGE = #{rejetmessage,jdbcType=VARCHAR},
+      </if>
+      <if test="reportdate != null">
+        REPORTDATE = #{reportdate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=DECIMAL},
+      </if>
+      <if test="updatedate != null">
+        UPDATEDATE = #{updatedate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.HjcnHistory2017">
+    update CNZB.HJCNHISTORY
+    set BBLX = #{bblx,jdbcType=DECIMAL},
+      CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR},
+      HISTORYREPORTID = #{historyreportid,jdbcType=VARCHAR},
+      ISVALIDE = #{isvalide,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR},
+      QYLX = #{qylx,jdbcType=DECIMAL},
+      QYMC = #{qymc,jdbcType=VARCHAR},
+      REGISTERDATE = #{registerdate,jdbcType=VARCHAR},
+      REJETMESSAGE = #{rejetmessage,jdbcType=VARCHAR},
+      REPORTDATE = #{reportdate,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=DECIMAL},
+      UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="multUpdateIsvalide">
+    update HJCNHISTORY set ISVALIDE = #{valide,jdbcType=VARCHAR}
+    where id in
+          <foreach collection="list" open="(" close=")" separator="," item="item" >
+            #{item}
+          </foreach>
+  </update>
+</mapper>

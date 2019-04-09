@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2017.mapper.Person2017Mapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2017.pojo.Person2017">
+    <id column="PERSONID" jdbcType="VARCHAR" property="personid" />
+    <result column="PERSONADDRESS" jdbcType="VARCHAR" property="personaddress" />
+    <result column="PERSONCREATETIME" jdbcType="TIMESTAMP" property="personcreatetime" />
+    <result column="PERSONCREATEUSER" jdbcType="VARCHAR" property="personcreateuser" />
+    <result column="PERSONEMAIL" jdbcType="VARCHAR" property="personemail" />
+    <result column="PERSONMOBILE" jdbcType="VARCHAR" property="personmobile" />
+    <result column="PERSONNAME" jdbcType="VARCHAR" property="personname" />
+    <result column="PERSONTEL" jdbcType="VARCHAR" property="persontel" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PERSONID, PERSONADDRESS, PERSONCREATETIME, PERSONCREATEUSER, PERSONEMAIL, PERSONMOBILE, 
+    PERSONNAME, PERSONTEL, CIVILREGIONALISMID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CNZB.PERSON
+    where PERSONID = #{personid,jdbcType=VARCHAR}
+  </select>
+  <select id="getMoveDatas" resultMap="BaseResultMap">
+    select * from PERSON
+    where civilregionalismid  in
+          (select distinct civilregionalismid from hjcnhistory where civilregionalismid is not null )
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CNZB.PERSON
+    where PERSONID = #{personid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Person2017">
+    insert into CNZB.PERSON (PERSONID, PERSONADDRESS, PERSONCREATETIME, 
+      PERSONCREATEUSER, PERSONEMAIL, PERSONMOBILE, 
+      PERSONNAME, PERSONTEL, CIVILREGIONALISMID
+      )
+    values (#{personid,jdbcType=VARCHAR}, #{personaddress,jdbcType=VARCHAR}, #{personcreatetime,jdbcType=TIMESTAMP}, 
+      #{personcreateuser,jdbcType=VARCHAR}, #{personemail,jdbcType=VARCHAR}, #{personmobile,jdbcType=VARCHAR}, 
+      #{personname,jdbcType=VARCHAR}, #{persontel,jdbcType=VARCHAR}, #{civilregionalismid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Person2017">
+    insert into CNZB.PERSON
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="personid != null">
+        PERSONID,
+      </if>
+      <if test="personaddress != null">
+        PERSONADDRESS,
+      </if>
+      <if test="personcreatetime != null">
+        PERSONCREATETIME,
+      </if>
+      <if test="personcreateuser != null">
+        PERSONCREATEUSER,
+      </if>
+      <if test="personemail != null">
+        PERSONEMAIL,
+      </if>
+      <if test="personmobile != null">
+        PERSONMOBILE,
+      </if>
+      <if test="personname != null">
+        PERSONNAME,
+      </if>
+      <if test="persontel != null">
+        PERSONTEL,
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="personid != null">
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="personaddress != null">
+        #{personaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="personcreatetime != null">
+        #{personcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personcreateuser != null">
+        #{personcreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="personemail != null">
+        #{personemail,jdbcType=VARCHAR},
+      </if>
+      <if test="personmobile != null">
+        #{personmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="personname != null">
+        #{personname,jdbcType=VARCHAR},
+      </if>
+      <if test="persontel != null">
+        #{persontel,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Person2017">
+    update CNZB.PERSON
+    <set>
+      <if test="personaddress != null">
+        PERSONADDRESS = #{personaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="personcreatetime != null">
+        PERSONCREATETIME = #{personcreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="personcreateuser != null">
+        PERSONCREATEUSER = #{personcreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="personemail != null">
+        PERSONEMAIL = #{personemail,jdbcType=VARCHAR},
+      </if>
+      <if test="personmobile != null">
+        PERSONMOBILE = #{personmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="personname != null">
+        PERSONNAME = #{personname,jdbcType=VARCHAR},
+      </if>
+      <if test="persontel != null">
+        PERSONTEL = #{persontel,jdbcType=VARCHAR},
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PERSONID = #{personid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb2017.pojo.Person2017">
+    update CNZB.PERSON
+    set PERSONADDRESS = #{personaddress,jdbcType=VARCHAR},
+      PERSONCREATETIME = #{personcreatetime,jdbcType=TIMESTAMP},
+      PERSONCREATEUSER = #{personcreateuser,jdbcType=VARCHAR},
+      PERSONEMAIL = #{personemail,jdbcType=VARCHAR},
+      PERSONMOBILE = #{personmobile,jdbcType=VARCHAR},
+      PERSONNAME = #{personname,jdbcType=VARCHAR},
+      PERSONTEL = #{persontel,jdbcType=VARCHAR},
+      CIVILREGIONALISMID = #{civilregionalismid,jdbcType=VARCHAR}
+    where PERSONID = #{personid,jdbcType=VARCHAR}
+  </update>
+</mapper>

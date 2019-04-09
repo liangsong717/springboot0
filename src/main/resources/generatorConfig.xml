@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--sql 连接数据库jar 注意路径-->
+    <!--E:\mavenLocalRepository\com\oracle\ojdbc6\11.2.0.3\ojdbc6-11.2.0.3.jar-->
+    <!--E:\mavenLocalRepository\com\fineway\kingbasejdbc\4.0\kingbasejdbc-4.0.jar-->
+    <classPathEntry location="E:\mavenLocalRepository\com\oracle\ojdbc6\11.2.0.3\ojdbc6-11.2.0.3.jar" />
+    <context id="testTables" targetRuntime="MyBatis3">
+        <commentGenerator>
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <!--hjcn1   hjcn1-->
+        <!--cnzb    cnzb-->
+        <!--cnzb2018    cnzb2018-->
+        <!--oracle.jdbc.driver.OracleDriver   jdbc:oracle:thin:@192.168.0.241:1521:orcl -->
+        <!--com.kingbase.Driver  jdbc:kingbase://192.168.10.105:54321/cnzb -->
+        <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+                        connectionURL="jdbc:oracle:thin:@59.252.165.24:1521:orcl"
+                        userId="cnzb2018"
+                        password="cnzb2018">
+        </jdbcConnection>
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 生成模型(PO)的包名和位置 -->
+        <javaModelGenerator targetPackage="com.fineway.springbootdemo.dao.cnzb_now.pojo"
+                            targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 生成映射文件的包名和位置-->
+        <sqlMapGenerator targetPackage="com.fineway.springbootdemo.dao.cnzb_now.sqlmap"
+                         targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的包名和位置-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.fineway.springbootdemo.dao.cnzb_now.mapper"
+                             targetProject="src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
+        <table schema="CNZB2018" tableName="CIVILREGIONALISM" domainObjectName="CivilregionalismNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="CNZB2018" tableName="GTCB" domainObjectName="GtcbNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="GTYB" domainObjectName="GtybNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="GTHB" domainObjectName="GthbNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="MTCB" domainObjectName="MtcbNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="MTYB" domainObjectName="MtybNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="MTHB" domainObjectName="MthbNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <!--<table schema="CNZB" tableName="RELATION" domainObjectName="Relation2017"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false"></table>-->
+        <table schema="CNZB2018" tableName="GTYBJRQKLX" domainObjectName="GtybjrqklxNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="GTHBJRQKLX" domainObjectName="GthbjrqklxNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="MTYBJRQKLX" domainObjectName="MtybjrqklxNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="MTHBJRQKLX" domainObjectName="MthbjrqklxNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="PERSON" domainObjectName="PersonNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="SYSTEMUSER" domainObjectName="SystemUserNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table schema="CNZB2018" tableName="HJCNHISTORY" domainObjectName="HjcnHistoryNow"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>

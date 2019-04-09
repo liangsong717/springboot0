@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb_now.mapper.SystemUserNowMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb_now.pojo.SystemUserNow">
+    <id column="SYSTEMUSERID" jdbcType="VARCHAR" property="systemuserid" />
+    <result column="SYSTEMUSERCREATETIME" jdbcType="TIMESTAMP" property="systemusercreatetime" />
+    <result column="SYSTEMUSERCREATEUSER" jdbcType="VARCHAR" property="systemusercreateuser" />
+    <result column="SYSTEMUSERNAME" jdbcType="VARCHAR" property="systemusername" />
+    <result column="SYSTEMUSERPASSWORD" jdbcType="VARCHAR" property="systemuserpassword" />
+    <result column="PERSONID" jdbcType="VARCHAR" property="personid" />
+    <result column="USERROLEID" jdbcType="VARCHAR" property="userroleid" />
+    <result column="CORRIGENDACONTACTNAME" jdbcType="VARCHAR" property="corrigendacontactname" />
+    <result column="CORRIGENDACONTACTPHONE" jdbcType="VARCHAR" property="corrigendacontactphone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SYSTEMUSERID, SYSTEMUSERCREATETIME, SYSTEMUSERCREATEUSER, SYSTEMUSERNAME, SYSTEMUSERPASSWORD, 
+    PERSONID, USERROLEID, CORRIGENDACONTACTNAME, CORRIGENDACONTACTPHONE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CNZB2018.SYSTEMUSER
+    where SYSTEMUSERID = #{systemuserid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CNZB2018.SYSTEMUSER
+    where SYSTEMUSERID = #{systemuserid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb_now.pojo.SystemUserNow">
+    insert into CNZB2018.SYSTEMUSER (SYSTEMUSERID, SYSTEMUSERCREATETIME, 
+      SYSTEMUSERCREATEUSER, SYSTEMUSERNAME, SYSTEMUSERPASSWORD, 
+      PERSONID, USERROLEID, CORRIGENDACONTACTNAME, 
+      CORRIGENDACONTACTPHONE)
+    values (#{systemuserid,jdbcType=VARCHAR}, #{systemusercreatetime,jdbcType=TIMESTAMP}, 
+      #{systemusercreateuser,jdbcType=VARCHAR}, #{systemusername,jdbcType=VARCHAR}, #{systemuserpassword,jdbcType=VARCHAR}, 
+      #{personid,jdbcType=VARCHAR}, #{userroleid,jdbcType=VARCHAR}, #{corrigendacontactname,jdbcType=VARCHAR}, 
+      #{corrigendacontactphone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb_now.pojo.SystemUserNow">
+    insert into CNZB2018.SYSTEMUSER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="systemuserid != null">
+        SYSTEMUSERID,
+      </if>
+      <if test="systemusercreatetime != null">
+        SYSTEMUSERCREATETIME,
+      </if>
+      <if test="systemusercreateuser != null">
+        SYSTEMUSERCREATEUSER,
+      </if>
+      <if test="systemusername != null">
+        SYSTEMUSERNAME,
+      </if>
+      <if test="systemuserpassword != null">
+        SYSTEMUSERPASSWORD,
+      </if>
+      <if test="personid != null">
+        PERSONID,
+      </if>
+      <if test="userroleid != null">
+        USERROLEID,
+      </if>
+      <if test="corrigendacontactname != null">
+        CORRIGENDACONTACTNAME,
+      </if>
+      <if test="corrigendacontactphone != null">
+        CORRIGENDACONTACTPHONE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="systemuserid != null">
+        #{systemuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="systemusercreatetime != null">
+        #{systemusercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemusercreateuser != null">
+        #{systemusercreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="systemusername != null">
+        #{systemusername,jdbcType=VARCHAR},
+      </if>
+      <if test="systemuserpassword != null">
+        #{systemuserpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null">
+        #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="userroleid != null">
+        #{userroleid,jdbcType=VARCHAR},
+      </if>
+      <if test="corrigendacontactname != null">
+        #{corrigendacontactname,jdbcType=VARCHAR},
+      </if>
+      <if test="corrigendacontactphone != null">
+        #{corrigendacontactphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb_now.pojo.SystemUserNow">
+    update CNZB2018.SYSTEMUSER
+    <set>
+      <if test="systemusercreatetime != null">
+        SYSTEMUSERCREATETIME = #{systemusercreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemusercreateuser != null">
+        SYSTEMUSERCREATEUSER = #{systemusercreateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="systemusername != null">
+        SYSTEMUSERNAME = #{systemusername,jdbcType=VARCHAR},
+      </if>
+      <if test="systemuserpassword != null">
+        SYSTEMUSERPASSWORD = #{systemuserpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="personid != null">
+        PERSONID = #{personid,jdbcType=VARCHAR},
+      </if>
+      <if test="userroleid != null">
+        USERROLEID = #{userroleid,jdbcType=VARCHAR},
+      </if>
+      <if test="corrigendacontactname != null">
+        CORRIGENDACONTACTNAME = #{corrigendacontactname,jdbcType=VARCHAR},
+      </if>
+      <if test="corrigendacontactphone != null">
+        CORRIGENDACONTACTPHONE = #{corrigendacontactphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SYSTEMUSERID = #{systemuserid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb_now.pojo.SystemUserNow">
+    update CNZB2018.SYSTEMUSER
+    set SYSTEMUSERCREATETIME = #{systemusercreatetime,jdbcType=TIMESTAMP},
+      SYSTEMUSERCREATEUSER = #{systemusercreateuser,jdbcType=VARCHAR},
+      SYSTEMUSERNAME = #{systemusername,jdbcType=VARCHAR},
+      SYSTEMUSERPASSWORD = #{systemuserpassword,jdbcType=VARCHAR},
+      PERSONID = #{personid,jdbcType=VARCHAR},
+      USERROLEID = #{userroleid,jdbcType=VARCHAR},
+      CORRIGENDACONTACTNAME = #{corrigendacontactname,jdbcType=VARCHAR},
+      CORRIGENDACONTACTPHONE = #{corrigendacontactphone,jdbcType=VARCHAR}
+    where SYSTEMUSERID = #{systemuserid,jdbcType=VARCHAR}
+  </update>
+</mapper>

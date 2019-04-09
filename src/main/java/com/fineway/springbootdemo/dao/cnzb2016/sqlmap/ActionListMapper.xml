@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.ActionListMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.ActionList">
+    <result column="ACTIONLISTID" jdbcType="VARCHAR" property="actionlistid" />
+    <result column="ACTIONLISTINTEGRANT" jdbcType="DECIMAL" property="actionlistintegrant" />
+    <result column="REPORTSTAGEID" jdbcType="VARCHAR" property="reportstageid" />
+    <result column="REPORTTYPEID" jdbcType="VARCHAR" property="reporttypeid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.ActionList">
+    insert into HJCN1.ACTIONLIST (ACTIONLISTID, ACTIONLISTINTEGRANT, 
+      REPORTSTAGEID, REPORTTYPEID)
+    values (#{actionlistid,jdbcType=VARCHAR}, #{actionlistintegrant,jdbcType=DECIMAL}, 
+      #{reportstageid,jdbcType=VARCHAR}, #{reporttypeid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.ActionList">
+    insert into HJCN1.ACTIONLIST
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="actionlistid != null">
+        ACTIONLISTID,
+      </if>
+      <if test="actionlistintegrant != null">
+        ACTIONLISTINTEGRANT,
+      </if>
+      <if test="reportstageid != null">
+        REPORTSTAGEID,
+      </if>
+      <if test="reporttypeid != null">
+        REPORTTYPEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="actionlistid != null">
+        #{actionlistid,jdbcType=VARCHAR},
+      </if>
+      <if test="actionlistintegrant != null">
+        #{actionlistintegrant,jdbcType=DECIMAL},
+      </if>
+      <if test="reportstageid != null">
+        #{reportstageid,jdbcType=VARCHAR},
+      </if>
+      <if test="reporttypeid != null">
+        #{reporttypeid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

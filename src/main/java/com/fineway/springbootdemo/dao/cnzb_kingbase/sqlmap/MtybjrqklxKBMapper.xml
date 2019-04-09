@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb_kingbase.mapper.MtybjrqklxKBMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.MtybjrqklxKB">
+    <id column="MTYBJRQKLXID" jdbcType="VARCHAR" property="mtybjrqklxid" />
+    <result column="SJJRJGMC" jdbcType="VARCHAR" property="sjjrjgmc" />
+    <result column="SJJE" jdbcType="NUMERIC" property="sjje" />
+    <result column="QKMS" jdbcType="VARCHAR" property="qkms" />
+    <result column="SFXDFJRJGFY" jdbcType="VARCHAR" property="sfxdfjrjgfy" />
+    <result column="QYSQ" jdbcType="VARCHAR" property="qysq" />
+    <result column="DWCPNHZB" jdbcType="NUMERIC" property="dwcpnhzb" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="MODIFYTIME" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="DFJRJGHFYJ" jdbcType="VARCHAR" property="dfjrjghfyj" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="REPORTID" jdbcType="VARCHAR" property="reportid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MTYBJRQKLXID, SJJRJGMC, SJJE, QKMS, SFXDFJRJGFY, QYSQ, DWCPNHZB, CREATETIME, MODIFYTIME, 
+    DFJRJGHFYJ, NAME, REPORTID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PUBLIC.MTYBJRQKLX
+    where MTYBJRQKLXID = #{mtybjrqklxid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from PUBLIC.MTYBJRQKLX
+    where MTYBJRQKLXID = #{mtybjrqklxid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.MtybjrqklxKB">
+    insert into PUBLIC.MTYBJRQKLX (MTYBJRQKLXID, SJJRJGMC, SJJE, 
+      QKMS, SFXDFJRJGFY, QYSQ, 
+      DWCPNHZB, CREATETIME, MODIFYTIME, 
+      DFJRJGHFYJ, NAME, REPORTID
+      )
+    values (#{mtybjrqklxid,jdbcType=VARCHAR}, #{sjjrjgmc,jdbcType=VARCHAR}, #{sjje,jdbcType=NUMERIC}, 
+      #{qkms,jdbcType=VARCHAR}, #{sfxdfjrjgfy,jdbcType=VARCHAR}, #{qysq,jdbcType=VARCHAR}, 
+      #{dwcpnhzb,jdbcType=NUMERIC}, #{createtime,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=TIMESTAMP}, 
+      #{dfjrjghfyj,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{reportid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.MtybjrqklxKB">
+    insert into PUBLIC.MTYBJRQKLX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mtybjrqklxid != null">
+        MTYBJRQKLXID,
+      </if>
+      <if test="sjjrjgmc != null">
+        SJJRJGMC,
+      </if>
+      <if test="sjje != null">
+        SJJE,
+      </if>
+      <if test="qkms != null">
+        QKMS,
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        SFXDFJRJGFY,
+      </if>
+      <if test="qysq != null">
+        QYSQ,
+      </if>
+      <if test="dwcpnhzb != null">
+        DWCPNHZB,
+      </if>
+      <if test="createtime != null">
+        CREATETIME,
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME,
+      </if>
+      <if test="dfjrjghfyj != null">
+        DFJRJGHFYJ,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="reportid != null">
+        REPORTID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mtybjrqklxid != null">
+        #{mtybjrqklxid,jdbcType=VARCHAR},
+      </if>
+      <if test="sjjrjgmc != null">
+        #{sjjrjgmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjje != null">
+        #{sjje,jdbcType=NUMERIC},
+      </if>
+      <if test="qkms != null">
+        #{qkms,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        #{sfxdfjrjgfy,jdbcType=VARCHAR},
+      </if>
+      <if test="qysq != null">
+        #{qysq,jdbcType=VARCHAR},
+      </if>
+      <if test="dwcpnhzb != null">
+        #{dwcpnhzb,jdbcType=NUMERIC},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dfjrjghfyj != null">
+        #{dfjrjghfyj,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null">
+        #{reportid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.MtybjrqklxKB">
+    update PUBLIC.MTYBJRQKLX
+    <set>
+      <if test="sjjrjgmc != null">
+        SJJRJGMC = #{sjjrjgmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjje != null">
+        SJJE = #{sjje,jdbcType=NUMERIC},
+      </if>
+      <if test="qkms != null">
+        QKMS = #{qkms,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxdfjrjgfy != null">
+        SFXDFJRJGFY = #{sfxdfjrjgfy,jdbcType=VARCHAR},
+      </if>
+      <if test="qysq != null">
+        QYSQ = #{qysq,jdbcType=VARCHAR},
+      </if>
+      <if test="dwcpnhzb != null">
+        DWCPNHZB = #{dwcpnhzb,jdbcType=NUMERIC},
+      </if>
+      <if test="createtime != null">
+        CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null">
+        MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dfjrjghfyj != null">
+        DFJRJGHFYJ = #{dfjrjghfyj,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="reportid != null">
+        REPORTID = #{reportid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MTYBJRQKLXID = #{mtybjrqklxid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fineway.springbootdemo.dao.cnzb_kingbase.pojo.MtybjrqklxKB">
+    update PUBLIC.MTYBJRQKLX
+    set SJJRJGMC = #{sjjrjgmc,jdbcType=VARCHAR},
+      SJJE = #{sjje,jdbcType=NUMERIC},
+      QKMS = #{qkms,jdbcType=VARCHAR},
+      SFXDFJRJGFY = #{sfxdfjrjgfy,jdbcType=VARCHAR},
+      QYSQ = #{qysq,jdbcType=VARCHAR},
+      DWCPNHZB = #{dwcpnhzb,jdbcType=NUMERIC},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+      DFJRJGHFYJ = #{dfjrjghfyj,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      REPORTID = #{reportid,jdbcType=VARCHAR}
+    where MTYBJRQKLXID = #{mtybjrqklxid,jdbcType=VARCHAR}
+  </update>
+</mapper>

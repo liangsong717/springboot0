@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.DisasterMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.Disaster">
+    <result column="DISASTERID" jdbcType="VARCHAR" property="disasterid" />
+    <result column="DISASTERDESCRIPTION" jdbcType="VARCHAR" property="disasterdescription" />
+    <result column="DISASTERENDTIME" jdbcType="TIMESTAMP" property="disasterendtime" />
+    <result column="DISASTERNAME" jdbcType="VARCHAR" property="disastername" />
+    <result column="DISASTERSTARTTIME" jdbcType="TIMESTAMP" property="disasterstarttime" />
+    <result column="DISASTERSTATMONTH" jdbcType="VARCHAR" property="disasterstatmonth" />
+    <result column="DISASTERVALIDITY" jdbcType="DECIMAL" property="disastervalidity" />
+    <result column="CREDITIONRELATIONID" jdbcType="VARCHAR" property="creditionrelationid" />
+    <result column="DISASTERKINDID" jdbcType="VARCHAR" property="disasterkindid" />
+    <result column="DISASTERSTATEID" jdbcType="VARCHAR" property="disasterstateid" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.Disaster">
+    insert into HJCN1.DISASTER (DISASTERID, DISASTERDESCRIPTION, 
+      DISASTERENDTIME, DISASTERNAME, DISASTERSTARTTIME, 
+      DISASTERSTATMONTH, DISASTERVALIDITY, CREDITIONRELATIONID, 
+      DISASTERKINDID, DISASTERSTATEID)
+    values (#{disasterid,jdbcType=VARCHAR}, #{disasterdescription,jdbcType=VARCHAR}, 
+      #{disasterendtime,jdbcType=TIMESTAMP}, #{disastername,jdbcType=VARCHAR}, #{disasterstarttime,jdbcType=TIMESTAMP}, 
+      #{disasterstatmonth,jdbcType=VARCHAR}, #{disastervalidity,jdbcType=DECIMAL}, #{creditionrelationid,jdbcType=VARCHAR}, 
+      #{disasterkindid,jdbcType=VARCHAR}, #{disasterstateid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.Disaster">
+    insert into HJCN1.DISASTER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="disasterid != null">
+        DISASTERID,
+      </if>
+      <if test="disasterdescription != null">
+        DISASTERDESCRIPTION,
+      </if>
+      <if test="disasterendtime != null">
+        DISASTERENDTIME,
+      </if>
+      <if test="disastername != null">
+        DISASTERNAME,
+      </if>
+      <if test="disasterstarttime != null">
+        DISASTERSTARTTIME,
+      </if>
+      <if test="disasterstatmonth != null">
+        DISASTERSTATMONTH,
+      </if>
+      <if test="disastervalidity != null">
+        DISASTERVALIDITY,
+      </if>
+      <if test="creditionrelationid != null">
+        CREDITIONRELATIONID,
+      </if>
+      <if test="disasterkindid != null">
+        DISASTERKINDID,
+      </if>
+      <if test="disasterstateid != null">
+        DISASTERSTATEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="disasterid != null">
+        #{disasterid,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterdescription != null">
+        #{disasterdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterendtime != null">
+        #{disasterendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disastername != null">
+        #{disastername,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterstarttime != null">
+        #{disasterstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="disasterstatmonth != null">
+        #{disasterstatmonth,jdbcType=VARCHAR},
+      </if>
+      <if test="disastervalidity != null">
+        #{disastervalidity,jdbcType=DECIMAL},
+      </if>
+      <if test="creditionrelationid != null">
+        #{creditionrelationid,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterkindid != null">
+        #{disasterkindid,jdbcType=VARCHAR},
+      </if>
+      <if test="disasterstateid != null">
+        #{disasterstateid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

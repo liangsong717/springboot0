@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.ReportStageMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.ReportStage">
+    <result column="REPORTSTAGEID" jdbcType="VARCHAR" property="reportstageid" />
+    <result column="REPORTSTAGEDESCRIPTION" jdbcType="VARCHAR" property="reportstagedescription" />
+    <result column="REPORTSTAGENAME" jdbcType="VARCHAR" property="reportstagename" />
+    <result column="REPORTSTAGEORDERNUMBER" jdbcType="DECIMAL" property="reportstageordernumber" />
+    <result column="REPORTSTAGECODE" jdbcType="VARCHAR" property="reportstagecode" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.ReportStage">
+    insert into HJCN1.REPORTSTAGE (REPORTSTAGEID, REPORTSTAGEDESCRIPTION, 
+      REPORTSTAGENAME, REPORTSTAGEORDERNUMBER, 
+      REPORTSTAGECODE)
+    values (#{reportstageid,jdbcType=VARCHAR}, #{reportstagedescription,jdbcType=VARCHAR}, 
+      #{reportstagename,jdbcType=VARCHAR}, #{reportstageordernumber,jdbcType=DECIMAL}, 
+      #{reportstagecode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.ReportStage">
+    insert into HJCN1.REPORTSTAGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportstageid != null">
+        REPORTSTAGEID,
+      </if>
+      <if test="reportstagedescription != null">
+        REPORTSTAGEDESCRIPTION,
+      </if>
+      <if test="reportstagename != null">
+        REPORTSTAGENAME,
+      </if>
+      <if test="reportstageordernumber != null">
+        REPORTSTAGEORDERNUMBER,
+      </if>
+      <if test="reportstagecode != null">
+        REPORTSTAGECODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportstageid != null">
+        #{reportstageid,jdbcType=VARCHAR},
+      </if>
+      <if test="reportstagedescription != null">
+        #{reportstagedescription,jdbcType=VARCHAR},
+      </if>
+      <if test="reportstagename != null">
+        #{reportstagename,jdbcType=VARCHAR},
+      </if>
+      <if test="reportstageordernumber != null">
+        #{reportstageordernumber,jdbcType=DECIMAL},
+      </if>
+      <if test="reportstagecode != null">
+        #{reportstagecode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

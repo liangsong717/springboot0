@@ -1,0 +1,54 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关 mapperLocations指的路径是src/main/resources
+#mybatis:
+  #typeAliasesPackage: com.fineway.springbootdemo.dao.pojo
+  mapperLocations: classpath:com/fineway/springbootdemo/dao/**/sqlmap/*.xml
+
+
+---
+
+#开发配置
+spring:
+  profiles: dev
+
+#使用多数据源，由于springboot默认单数据源，需加Config类，并且url必须改成jdbc-url;springboot2.0默认数据源:HikariPool
+  datasource:
+    source1:
+      name: businessData
+      # 使用druid数据源
+      #type: com.alibaba.druid.pool.DruidDataSource
+      #url: jdbc:oracle:thin:@192.168.0.241:1521:orcl
+      #username: BusinessData
+      #password: BusinessData
+      jdbc-url: jdbc:oracle:thin:@192.168.0.241:1521:orcl
+      username: cnzb2018
+      password: cnzb2018
+      #driver-class-name: oracle.jdbc.driver.OracleDriver
+    source2:
+      #type: com.alibaba.druid.pool.DruidDataSource
+      jdbc-url: jdbc:oracle:thin:@192.168.0.241:1521:orcl
+      username: cnzb
+      password: cnzb
+      #driver-class-name: oracle.jdbc.driver.OracleDriver
+    source3:
+      #type: com.alibaba.druid.pool.DruidDataSource
+      jdbc-url: jdbc:oracle:thin:@192.168.0.241:1521:orcl
+      username: hjcn1
+      password: hjcn1
+      #driver-class-name: oracle.jdbc.driver.OracleDriver
+    source4:
+      #type: com.alibaba.druid.pool.DruidDataSource
+      jdbc-url: jdbc:kingbase://192.168.10.105:54321/cnzb
+      username: cnzb2018
+      password: cnzb
+      driver-class-name: com.kingbase.Driver
+    source5:
+      #type: com.alibaba.druid.pool.DruidDataSource
+      jdbc-url: jdbc:oracle:thin:@59.252.165.24:1521:orcl
+      username: cnzb2018
+      password: cnzb2018
+      #driver-class-name: oracle.jdbc.driver.OracleDriver

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fineway.springbootdemo.dao.cnzb2016.mapper.CreditionRelationMapper">
+  <resultMap id="BaseResultMap" type="com.fineway.springbootdemo.dao.cnzb2016.pojo.CreditionRelation">
+    <result column="CREDITIONRELATIONID" jdbcType="VARCHAR" property="creditionrelationid" />
+    <result column="CRFORVILLAGE" jdbcType="DECIMAL" property="crforvillage" />
+    <result column="CIVILREGIONALISMID" jdbcType="VARCHAR" property="civilregionalismid" />
+    <result column="CREDITIONID" jdbcType="VARCHAR" property="creditionid" />
+    <result column="EVOLVEMENTMODEID" jdbcType="VARCHAR" property="evolvementmodeid" />
+    <result column="REDITIONRELATIONID" jdbcType="VARCHAR" property="reditionrelationid" />
+    <result column="CRDESCRIPTION" jdbcType="VARCHAR" property="crdescription" />
+  </resultMap>
+  <insert id="insert" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.CreditionRelation">
+    insert into HJCN1.CREDITIONRELATION (CREDITIONRELATIONID, CRFORVILLAGE, 
+      civilregionalismid, CREDITIONID, EVOLVEMENTMODEID,
+      REDITIONRELATIONID, CRDESCRIPTION)
+    values (#{creditionrelationid,jdbcType=VARCHAR}, #{crforvillage,jdbcType=DECIMAL}, 
+      #{civilregionalismid,jdbcType=VARCHAR}, #{creditionid,jdbcType=VARCHAR}, #{evolvementmodeid,jdbcType=VARCHAR}, 
+      #{reditionrelationid,jdbcType=VARCHAR}, #{crdescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fineway.springbootdemo.dao.cnzb2016.pojo.CreditionRelation">
+    insert into HJCN1.CREDITIONRELATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="creditionrelationid != null">
+        CREDITIONRELATIONID,
+      </if>
+      <if test="crforvillage != null">
+        CRFORVILLAGE,
+      </if>
+      <if test="civilregionalismid != null">
+        CIVILREGIONALISMID,
+      </if>
+      <if test="creditionid != null">
+        CREDITIONID,
+      </if>
+      <if test="evolvementmodeid != null">
+        EVOLVEMENTMODEID,
+      </if>
+      <if test="reditionrelationid != null">
+        REDITIONRELATIONID,
+      </if>
+      <if test="crdescription != null">
+        CRDESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="creditionrelationid != null">
+        #{creditionrelationid,jdbcType=VARCHAR},
+      </if>
+      <if test="crforvillage != null">
+        #{crforvillage,jdbcType=DECIMAL},
+      </if>
+      <if test="civilregionalismid != null">
+        #{civilregionalismid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditionid != null">
+        #{creditionid,jdbcType=VARCHAR},
+      </if>
+      <if test="evolvementmodeid != null">
+        #{evolvementmodeid,jdbcType=VARCHAR},
+      </if>
+      <if test="reditionrelationid != null">
+        #{reditionrelationid,jdbcType=VARCHAR},
+      </if>
+      <if test="crdescription != null">
+        #{crdescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
